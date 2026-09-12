@@ -1,178 +1,19 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
+import type React from "react";
+import {
+  Plane, Hotel, Coffee, UtensilsCrossed, Car, Map, FileText, PartyPopper,
+  Ticket, TreePine, Gift, Briefcase, Shield, Camera, Film, Ship, Wallet,
+  Compass, Phone, RefreshCw, Sun, Moon, Star, Sparkles,
+  AtSign, Share2, MonitorPlay, MessageCircle, MapPin, Lock,
+  CheckCircle, Snowflake, Globe, Wine, CalendarDays, BadgePercent,
+  HeartHandshake
+} from "lucide-react";
 
 /**
  * AURORA CROSSINGS — Christmas & New Year 2026/2027 Travel Landing Page
  * Festive theme with Christmas + New Year hero, full footer, enhanced content.
  */
 
-const DESTINATIONS = [
-  {
-    code: "DXB",
-    city: "Dubai",
-    country: "United Arab Emirates",
-    gate: "A7",
-    blurb:
-      "Experience the world's most spectacular New Year's Eve at Burj Khalifa with record-breaking fireworks. Enjoy luxury desert safaris, iconic Christmas brunches, and rooftop celebrations. Your perfect blend of Arabian hospitality and festive magic awaits.",
-    seat: "12F",
-    price: "₹1,89,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "CDG",
-    city: "Paris",
-    country: "France",
-    gate: "B3",
-    blurb: "Walk through enchanting Christmas markets along the Champs-Élysées, sip champagne under the sparkling Eiffel Tower at midnight, and indulge in gourmet French cuisine. The City of Lights becomes the City of Magic during the festive season.",
-    seat: "04A",
-    price: "₹2,15,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "MLE",
-    city: "Maldives",
-    country: "Indian Ocean Paradise",
-    gate: "C1",
-    blurb: "Escape to paradise with a private overwater villa where turquoise waters meet golden sunsets. Experience an intimate beachfront New Year's Eve dinner, underwater adventures, and complete serenity. Perfect for couples seeking a romantic festive escape.",
-    seat: "01C",
-    price: "₹2,45,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "SYD",
-    city: "Sydney",
-    country: "Australia",
-    gate: "D9",
-    blurb: "Be among the first in the world to welcome 2027! Watch the iconic Sydney Harbour Bridge light up with spectacular pyrotechnics. Enjoy summer Christmas on Bondi Beach, harbour cruises, and the legendary Opera House as your backdrop.",
-    seat: "22D",
-    price: "₹2,30,000",
-    nights: "7 Nights / 8 Days",
-    img: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "BKK",
-    city: "Bangkok",
-    country: "Thailand",
-    gate: "A2",
-    blurb: "Vibrant street celebrations, spectacular rooftop parties, and ancient temple visits create the perfect festive fusion. Experience floating markets, traditional Thai massages, world-class shopping, and an electrifying countdown under Bangkok's neon skies.",
-    seat: "18B",
-    price: "₹1,25,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "SIN",
-    city: "Singapore",
-    country: "Singapore",
-    gate: "C5",
-    blurb: "Asia's most dazzling New Year celebration awaits! Marina Bay's spectacular fireworks, festive light displays at Gardens by the Bay, world-class dining, and the iconic countdown at Marina Bay Sands. A perfect blend of modernity and festive magic.",
-    seat: "09D",
-    price: "₹1,65,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "HKG",
-    city: "Hong Kong",
-    country: "China",
-    gate: "D3",
-    blurb: "Experience the spectacular Victoria Harbour countdown with fireworks lighting up the skyline. Explore festive markets, take the Peak Tram for breathtaking views, visit magical Disneyland, and ring in 2027 with one of Asia's most iconic celebrations.",
-    seat: "11A",
-    price: "₹1,75,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "TYO",
-    city: "Tokyo",
-    country: "Japan",
-    gate: "E8",
-    blurb: "Welcome 2027 with traditional Japanese New Year (Shogatsu) celebrations! Visit ancient temples for midnight bells, experience winter illuminations in Shibuya, enjoy hot springs, watch Mount Fuji sunrise, and immerse yourself in unique Japanese festive culture.",
-    seat: "06B",
-    price: "₹1,95,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "KUL",
-    city: "Kuala Lumpur",
-    country: "Malaysia",
-    gate: "B9",
-    blurb: "Celebrate at the iconic Petronas Towers with spectacular fireworks and light shows. Explore vibrant street markets, enjoy world-class shopping, visit Batu Caves, and experience multicultural festivities. Affordable luxury with unforgettable New Year memories.",
-    seat: "14C",
-    price: "₹1,15,000",
-    nights: "5 Nights / 6 Days",
-    img: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "BLI",
-    city: "Bali",
-    country: "Indonesia",
-    gate: "F1",
-    blurb: "Ring in the New Year on pristine beaches with bonfire parties and ocean views. Experience ancient temples, lush rice terraces, traditional Balinese culture, beach clubs in Seminyak, and serene Ubud. The perfect tropical paradise for festive celebrations.",
-    seat: "03A",
-    price: "₹1,35,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "IST",
-    city: "Istanbul",
-    country: "Turkey",
-    gate: "G4",
-    blurb: "Where East meets West for an unforgettable New Year! Experience the magical Bosphorus cruise with fireworks, explore historic Hagia Sophia and Blue Mosque, shop at Grand Bazaar, and celebrate at Taksim Square. A unique blend of cultures and celebrations.",
-    seat: "19B",
-    price: "₹1,85,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "AMD",
-    city: "Ahmedabad",
-    country: "India - Gujarat",
-    gate: "H2",
-    blurb: "Celebrate the New Year in India's heritage city! Experience the stunning Rann Utsav in white desert, visit historic sites like Sabarmati Ashram, enjoy vibrant Gujarati culture, traditional cuisine, and ring in 2027 with cultural performances under starlit skies.",
-    seat: "21A",
-    price: "₹85,000",
-    nights: "4 Nights / 5 Days",
-    img: "https://images.unsplash.com/photo-1609416921994-a11c616dcfea?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "ZRH",
-    city: "Switzerland",
-    country: "Swiss Alps",
-    gate: "B7",
-    blurb: "Picture-perfect white Christmas in a luxury Alpine chalet. Ski world-class slopes by day, warm up with Swiss hot chocolate by the fireplace, and watch fireworks burst over snow-capped mountains. The ultimate winter wonderland experience.",
-    seat: "07A",
-    price: "₹2,75,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "LHR",
-    city: "London",
-    country: "United Kingdom",
-    gate: "E4",
-    blurb: "Experience a traditional British Christmas with festive lights on Oxford Street, ice skating at Somerset House, and New Year's fireworks over the Thames. Visit winter wonderlands, historic markets, and ring in 2027 with Big Ben's iconic chimes.",
-    seat: "08C",
-    price: "₹2,05,000",
-    nights: "6 Nights / 7 Days",
-    img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&auto=format&fit=crop&q=70",
-  },
-  {
-    code: "JFK",
-    city: "New York",
-    country: "United States",
-    gate: "F2",
-    blurb: "The ultimate New Year's Eve experience at Times Square! Shop Fifth Avenue's holiday displays, ice skate in Central Park, enjoy Broadway shows, and join millions for the legendary ball drop. Plus, explore iconic Christmas window displays and festive markets.",
-    seat: "15A",
-    price: "₹2,95,000",
-    nights: "7 Nights / 8 Days",
-    img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&auto=format&fit=crop&q=70",
-  },
-];
 
 const TIERS = [
   {
@@ -193,43 +34,43 @@ const TIERS = [
   },
 ];
 
-const INCLUSIONS = [
-  { icon: "✈️", text: "International round-trip flights" },
-  { icon: "🏨", text: "4/5-star hotel accommodation" },
-  { icon: "🍳", text: "Daily breakfast buffet included" },
-  { icon: "🍽️", text: "Welcome dinner & selected meals" },
-  { icon: "🚗", text: "Airport transfers both ways" },
-  { icon: "🗺️", text: "Guided city sightseeing tours" },
-  { icon: "📋", text: "Visa assistance & documentation" },
-  { icon: "🎉", text: "New Year's Eve gala dinner" },
-  { icon: "🎫", text: "VIP countdown party access" },
-  { icon: "🎄", text: "Christmas Eve special dinner" },
-  { icon: "🎁", text: "Festive welcome gift package" },
-  { icon: "💼", text: "Dedicated travel manager 24/7" },
-  { icon: "🛡️", text: "Comprehensive travel insurance" },
-  { icon: "📸", text: "Professional photo session" },
-  { icon: "🎭", text: "Cultural activities & experiences" },
-  { icon: "🚢", text: "Optional cruise experiences" },
+const INCLUSIONS: { icon: React.ReactNode; text: string }[] = [
+  { icon: <Plane size={16} />, text: "International round-trip flights" },
+  { icon: <Hotel size={16} />, text: "4/5-star hotel accommodation" },
+  { icon: <Coffee size={16} />, text: "Daily breakfast buffet included" },
+  { icon: <UtensilsCrossed size={16} />, text: "Welcome dinner & selected meals" },
+  { icon: <Car size={16} />, text: "Airport transfers both ways" },
+  { icon: <Map size={16} />, text: "Guided city sightseeing tours" },
+  { icon: <FileText size={16} />, text: "Visa assistance & documentation" },
+  { icon: <PartyPopper size={16} />, text: "New Year's Eve gala dinner" },
+  { icon: <Ticket size={16} />, text: "VIP countdown party access" },
+  { icon: <TreePine size={16} />, text: "Christmas Eve special dinner" },
+  { icon: <Gift size={16} />, text: "Festive welcome gift package" },
+  { icon: <Briefcase size={16} />, text: "Dedicated travel manager 24/7" },
+  { icon: <Shield size={16} />, text: "Comprehensive travel insurance" },
+  { icon: <Camera size={16} />, text: "Professional photo session" },
+  { icon: <Film size={16} />, text: "Cultural activities & experiences" },
+  { icon: <Ship size={16} />, text: "Optional cruise experiences" },
 ];
 
-const CONFIDENCE = [
+const CONFIDENCE: { icon: React.ReactNode; title: string; text: string }[] = [
   {
-    icon: "💰",
+    icon: <Wallet size={22} />,
     title: "Book with a Low Deposit",
     text: "Secure any package for just 20% deposit. Pay the balance at your convenience before departure.",
   },
   {
-    icon: "🧭",
+    icon: <Compass size={22} />,
     title: "Local Experts on the Ground",
     text: "Our Travel Directors and local specialists know every destination inside out — so you travel worry-free.",
   },
   {
-    icon: "📞",
+    icon: <Phone size={22} />,
     title: "24/7 Support Always",
     text: "From the moment you book to the day you land back home, we're reachable around the clock.",
   },
   {
-    icon: "🔄",
+    icon: <RefreshCw size={22} />,
     title: "Flexible Cancellation",
     text: "Change your dates or destination with no rebooking fees up to 90 days before departure.",
   },
@@ -280,6 +121,350 @@ const TESTIMONIALS = [
   },
 ];
 
+const PACKAGES = [
+  {
+    id: 1, country: "Bali", flag: "🇮🇩",
+    name: "Crazy Deal Bali With Water Sports",
+    duration: "6 Nights / 7 Days", price: 744,
+    img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Bali", desc: "Arrive in Bali, hotel check-in and relax for the evening." },
+      { day: "Day 2", title: "Bali Sightseeing", desc: "Explore Bali's beautiful temples, scenic landscapes and cultural attractions." },
+      { day: "Day 3", title: "Water Sports Adventure", desc: "Enjoy exciting water sports such as banana boat, jet ski and parasailing." },
+      { day: "Day 4", title: "Nusa Penida Island", desc: "Discover spectacular beaches, cliffs and picture-perfect viewpoints." },
+      { day: "Day 5", title: "Ubud Experience", desc: "Explore Ubud's rice terraces, local culture and beautiful natural surroundings." },
+      { day: "Day 6", title: "Leisure & Shopping", desc: "Enjoy a relaxing day for shopping, beaches or exploring Bali at your own pace." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 2, country: "Singapore", flag: "🇸🇬",
+    name: "Crazy Deal Singapore With Sentosa Island",
+    duration: "4 Nights / 5 Days", price: 726,
+    img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Singapore", desc: "Arrive in Singapore, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Singapore City Tour", desc: "Explore Singapore's iconic landmarks and popular city attractions." },
+      { day: "Day 3", title: "Sentosa Island", desc: "Enjoy an exciting day at Sentosa Island with its famous attractions and entertainment." },
+      { day: "Day 4", title: "Singapore Leisure Day", desc: "Spend the day shopping, sightseeing or exploring Singapore at your own pace." },
+      { day: "Day 5", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 3, country: "Thailand", flag: "🇹🇭",
+    name: "Simply Thailand – Flights Inclusive",
+    duration: "6 Nights / 7 Days", price: 615,
+    img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Bangkok", desc: "Arrive in Bangkok, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Bangkok City Tour", desc: "Explore Bangkok's famous temples, local attractions and vibrant city life." },
+      { day: "Day 3", title: "Bangkok → Pattaya", desc: "Travel to Pattaya, check in and spend the evening exploring at leisure." },
+      { day: "Day 4", title: "Coral Island Tour", desc: "Enjoy a scenic Coral Island excursion with beautiful beaches and optional water activities." },
+      { day: "Day 5", title: "Pattaya → Phuket", desc: "Transfer to Phuket and relax or explore the lively surroundings in the evening." },
+      { day: "Day 6", title: "Phuket Island Experience", desc: "Discover Phuket's stunning beaches, viewpoints and popular local attractions." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return flight with wonderful Thailand memories." },
+    ],
+  },
+  {
+    id: 4, country: "Vietnam", flag: "🇻🇳",
+    name: "Vietnam Extravaganza",
+    duration: "5 Nights / 6 Days", price: 1013,
+    img: "https://images.unsplash.com/photo-1555921015-5532091f6026?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Hanoi", desc: "Arrive in Hanoi, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Hanoi City Tour", desc: "Explore Hanoi's famous landmarks, historic sites and vibrant Old Quarter." },
+      { day: "Day 3", title: "Ha Long Bay Cruise", desc: "Enjoy a scenic Ha Long Bay cruise surrounded by stunning limestone islands." },
+      { day: "Day 4", title: "Fly to Ho Chi Minh City", desc: "Travel to Ho Chi Minh City and explore the lively city at your own pace." },
+      { day: "Day 5", title: "Ho Chi Minh City & Cu Chi Tunnels", desc: "Discover key city attractions and visit the historic Cu Chi Tunnels." },
+      { day: "Day 6", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 5, country: "Japan", flag: "🇯🇵",
+    name: "Japan – Cherry Blossom",
+    duration: "7 Nights / 8 Days", price: 3099,
+    img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Tokyo", desc: "Arrive in Tokyo, hotel check-in and relax for the evening." },
+      { day: "Day 2", title: "Tokyo City Tour", desc: "Explore Tokyo's iconic attractions, vibrant districts and beautiful cherry blossoms." },
+      { day: "Day 3", title: "Mt. Fuji & Hakone", desc: "Experience breathtaking Mt. Fuji views and the scenic beauty of Hakone." },
+      { day: "Day 4", title: "Tokyo → Kyoto", desc: "Travel by bullet train to Kyoto and enjoy the historic surroundings." },
+      { day: "Day 5", title: "Kyoto Sightseeing", desc: "Discover Kyoto's famous temples, traditional streets and cherry blossom spots." },
+      { day: "Day 6", title: "Kyoto → Osaka", desc: "Travel to Osaka and explore its famous castle, shopping and entertainment districts." },
+      { day: "Day 7", title: "Nara Excursion", desc: "Visit Nara's famous deer park, ancient temples and traditional surroundings." },
+      { day: "Day 8", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 6, country: "Europe", flag: "🇪🇺",
+    name: "Europe For All (Winter)",
+    duration: "7 Nights / 8 Days", price: 2659,
+    img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Paris", desc: "Arrive in Paris, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Paris City Tour", desc: "Explore the Eiffel Tower, Champs-Élysées and other iconic Paris attractions." },
+      { day: "Day 3", title: "Paris → Switzerland", desc: "Travel through scenic European countryside to beautiful Switzerland." },
+      { day: "Day 4", title: "Switzerland & Mt. Titlis", desc: "Experience snow-covered Mt. Titlis and breathtaking Alpine views." },
+      { day: "Day 5", title: "Switzerland → Germany", desc: "Travel to Germany and enjoy picturesque towns and winter scenery." },
+      { day: "Day 6", title: "Germany → Amsterdam", desc: "Continue to Amsterdam and explore its charming canals and vibrant streets." },
+      { day: "Day 7", title: "Amsterdam Sightseeing", desc: "Discover Amsterdam's famous landmarks and enjoy a scenic canal experience." },
+      { day: "Day 8", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 7, country: "Europe", flag: "🇪🇺",
+    name: "Fusion Europe (Winter)",
+    duration: "10 Nights / 11 Days", price: 3484,
+    img: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Paris", desc: "Arrive in Paris, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Paris Sightseeing", desc: "Explore the Eiffel Tower, Champs-Élysées and other iconic Paris attractions." },
+      { day: "Day 3", title: "Paris → Switzerland", desc: "Travel to Switzerland through beautiful European countryside." },
+      { day: "Day 4", title: "Swiss Alps Experience", desc: "Enjoy spectacular snow-covered mountains and breathtaking Alpine scenery." },
+      { day: "Day 5", title: "Switzerland → Germany", desc: "Travel to Germany and explore its charming towns and winter landscapes." },
+      { day: "Day 6", title: "Germany → Austria", desc: "Continue to Austria and enjoy its stunning architecture and Alpine surroundings." },
+      { day: "Day 7", title: "Austria → Italy", desc: "Travel to Italy and experience its beautiful historic streets and culture." },
+      { day: "Day 8", title: "Venice Experience", desc: "Explore Venice's famous canals, bridges and St. Mark's Square." },
+      { day: "Day 9", title: "Italy → Amsterdam", desc: "Continue your European journey to vibrant Amsterdam." },
+      { day: "Day 10", title: "Amsterdam Sightseeing", desc: "Discover Amsterdam's canals, famous landmarks and lively city centre." },
+      { day: "Day 11", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 8, country: "Europe", flag: "🇫🇷🇨🇭",
+    name: "Swiss French Magic (Winter)",
+    duration: "7 Nights / 8 Days", price: 3595,
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Paris", desc: "Arrive in Paris, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Paris City Tour", desc: "Explore the Eiffel Tower, Champs-Élysées and other iconic Paris attractions." },
+      { day: "Day 3", title: "Paris Leisure & Shopping", desc: "Enjoy Paris at your own pace with shopping, cafés and beautiful city sights." },
+      { day: "Day 4", title: "Paris → Switzerland", desc: "Travel to Switzerland and enjoy the breathtaking winter landscapes." },
+      { day: "Day 5", title: "Mt. Titlis Experience", desc: "Experience snow-covered Mt. Titlis, cable-car views and spectacular Alpine scenery." },
+      { day: "Day 6", title: "Lucerne Sightseeing", desc: "Explore charming Lucerne, its beautiful lake and famous historic landmarks." },
+      { day: "Day 7", title: "Interlaken & Swiss Alps", desc: "Discover picturesque Interlaken surrounded by magnificent snow-covered mountains." },
+      { day: "Day 8", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 9, country: "Europe", flag: "🇫🇮",
+    name: "Arctic Delights – Christmas in Santaland",
+    duration: "8 Nights / 9 Days", price: 6067,
+    img: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Finland", desc: "Arrive in Finland, check in and experience the magical Arctic winter atmosphere." },
+      { day: "Day 2", title: "Helsinki Sightseeing", desc: "Explore Helsinki's famous landmarks, Christmas markets and festive streets." },
+      { day: "Day 3", title: "Journey to Lapland", desc: "Travel north to magical Lapland, the home of Santa Claus." },
+      { day: "Day 4", title: "Santa Claus Village", desc: "Meet Santa, cross the Arctic Circle and enjoy the festive Christmas experience." },
+      { day: "Day 5", title: "Husky & Reindeer Adventure", desc: "Experience thrilling husky and reindeer rides through snowy Arctic landscapes." },
+      { day: "Day 6", title: "Northern Lights Experience", desc: "Head into the Arctic wilderness to witness the spectacular Aurora Borealis." },
+      { day: "Day 7", title: "Arctic Snow Adventure", desc: "Enjoy Lapland's winter activities, snowy scenery and unforgettable Arctic experiences." },
+      { day: "Day 8", title: "Leisure & Christmas Magic", desc: "Spend the day enjoying Lapland's festive atmosphere and last-minute experiences." },
+      { day: "Day 9", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 10, country: "Europe", flag: "🇫🇮",
+    name: "Highlights of Finland with Northern Lights – Winter Special",
+    duration: "6 Nights / 7 Days", price: 6641,
+    img: "https://images.unsplash.com/photo-1579033461380-adb47c3eb938?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Helsinki", desc: "Arrive in Helsinki, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Helsinki City Tour", desc: "Explore Helsinki's iconic landmarks, vibrant streets and beautiful winter scenery." },
+      { day: "Day 3", title: "Helsinki → Lapland", desc: "Journey to magical Lapland and experience Finland's breathtaking Arctic landscapes." },
+      { day: "Day 4", title: "Santa Claus Village", desc: "Visit Santa Claus Village, cross the Arctic Circle and enjoy festive attractions." },
+      { day: "Day 5", title: "Arctic Adventure", desc: "Experience exciting husky or reindeer activities surrounded by snowy wilderness." },
+      { day: "Day 6", title: "Northern Lights Experience", desc: "Venture into the Arctic night to witness the spectacular Aurora Borealis." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 11, country: "USA", flag: "🇺🇸",
+    name: "Eastern Delights – Summer 2026",
+    duration: "5 Nights / 6 Days", price: 1939,
+    img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in New York", desc: "Arrive in New York, hotel check-in and enjoy the vibrant city atmosphere." },
+      { day: "Day 2", title: "New York City Tour", desc: "Explore Times Square, Statue of Liberty and other iconic New York attractions." },
+      { day: "Day 3", title: "New York → Washington D.C.", desc: "Travel to Washington D.C. and discover the highlights of the U.S. capital." },
+      { day: "Day 4", title: "Washington D.C. → Niagara Falls", desc: "Journey to Niagara Falls and enjoy the spectacular natural scenery." },
+      { day: "Day 5", title: "Niagara Falls Experience", desc: "Experience the breathtaking falls, viewpoints and popular surrounding attractions." },
+      { day: "Day 6", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 12, country: "USA", flag: "🇺🇸",
+    name: "Western Delights – Summer 2026",
+    duration: "6 Nights / 7 Days", price: 2207,
+    img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Los Angeles", desc: "Arrive in Los Angeles, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Los Angeles City Tour", desc: "Explore Hollywood, Beverly Hills and other famous Los Angeles attractions." },
+      { day: "Day 3", title: "Los Angeles → Las Vegas", desc: "Travel to Las Vegas and experience the dazzling Las Vegas Strip." },
+      { day: "Day 4", title: "Grand Canyon Experience", desc: "Enjoy a memorable excursion to the spectacular Grand Canyon." },
+      { day: "Day 5", title: "Las Vegas → San Francisco", desc: "Travel to San Francisco and relax after your journey." },
+      { day: "Day 6", title: "San Francisco City Tour", desc: "Explore the Golden Gate Bridge, Fisherman's Wharf and other city highlights." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 13, country: "USA", flag: "🇺🇸",
+    name: "Funfilled Florida & Bahamas Cruise – Summer 2026",
+    duration: "7 Nights / 8 Days", price: 2297,
+    img: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Florida", desc: "Arrive in Florida, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Orlando Experience", desc: "Enjoy Orlando's famous attractions, entertainment and vibrant atmosphere." },
+      { day: "Day 3", title: "Florida Sightseeing", desc: "Explore popular local attractions and enjoy Florida's sunny surroundings." },
+      { day: "Day 4", title: "Bahamas Cruise Begins", desc: "Board your cruise and enjoy exciting onboard entertainment and activities." },
+      { day: "Day 5", title: "Bahamas Island Experience", desc: "Discover beautiful beaches, turquoise waters and tropical island scenery." },
+      { day: "Day 6", title: "Cruise Experience", desc: "Relax onboard with dining, entertainment and spectacular ocean views." },
+      { day: "Day 7", title: "Return to Florida", desc: "Disembark in Florida and enjoy your final evening at leisure." },
+      { day: "Day 8", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 14, country: "USA", flag: "🇺🇸",
+    name: "Wonderful West Coast – Fixed Departures",
+    duration: "6 Nights / 7 Days", price: 2609,
+    img: "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in San Francisco", desc: "Arrive in San Francisco, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "San Francisco City Tour", desc: "Explore the Golden Gate Bridge, Fisherman's Wharf and other city highlights." },
+      { day: "Day 3", title: "San Francisco → Las Vegas", desc: "Travel to Las Vegas and experience the dazzling lights of the famous Strip." },
+      { day: "Day 4", title: "Grand Canyon Experience", desc: "Enjoy an exciting excursion to the breathtaking Grand Canyon." },
+      { day: "Day 5", title: "Las Vegas → Los Angeles", desc: "Travel to Los Angeles and explore the city's vibrant surroundings." },
+      { day: "Day 6", title: "Los Angeles City Tour", desc: "Discover Hollywood, Beverly Hills and other iconic Los Angeles attractions." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 15, country: "USA", flag: "🇺🇸",
+    name: "Enchanting East Coast – Fixed Departures",
+    duration: "6 Nights / 7 Days", price: 2682,
+    img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in New York", desc: "Arrive in New York, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "New York City Tour", desc: "Explore Times Square, Statue of Liberty and other iconic New York attractions." },
+      { day: "Day 3", title: "New York → Washington D.C.", desc: "Travel to Washington D.C. and explore the highlights of the U.S. capital." },
+      { day: "Day 4", title: "Washington D.C. → Niagara Falls", desc: "Journey towards Niagara Falls and enjoy the scenic surroundings." },
+      { day: "Day 5", title: "Niagara Falls Experience", desc: "Witness the magnificent Niagara Falls and enjoy its popular viewpoints." },
+      { day: "Day 6", title: "Niagara Falls → New York", desc: "Return to New York and enjoy shopping or leisure time in the city." },
+      { day: "Day 7", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 16, country: "New Zealand", flag: "🇳🇿",
+    name: "Scenic New Zealand – Summer 2026",
+    duration: "9 Nights / 10 Days", price: 4368,
+    img: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Auckland", desc: "Arrive in Auckland, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Auckland City Tour", desc: "Explore Auckland's waterfront, city landmarks and beautiful viewpoints." },
+      { day: "Day 3", title: "Auckland → Rotorua", desc: "Travel to Rotorua and experience its geothermal wonders and Māori culture." },
+      { day: "Day 4", title: "Rotorua → Queenstown", desc: "Travel to Queenstown and enjoy the spectacular mountain and lake scenery." },
+      { day: "Day 5", title: "Queenstown Adventure", desc: "Explore Queenstown with optional adventure activities and scenic attractions." },
+      { day: "Day 6", title: "Milford Sound Cruise", desc: "Experience breathtaking Milford Sound with a scenic cruise through dramatic landscapes." },
+      { day: "Day 7", title: "Queenstown → Christchurch", desc: "Journey to Christchurch and enjoy New Zealand's stunning South Island scenery." },
+      { day: "Day 8", title: "Christchurch City Tour", desc: "Explore Christchurch's gardens, landmarks and charming city attractions." },
+      { day: "Day 9", title: "Scenic South Island", desc: "Enjoy a final day surrounded by New Zealand's breathtaking natural scenery." },
+      { day: "Day 10", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 17, country: "Australia + New Zealand", flag: "🇦🇺🇳🇿",
+    name: "Grand Bargain Australia With Scenic New Zealand – Summer 2026",
+    duration: "17 Nights / 18 Days", price: 7645,
+    img: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Melbourne", desc: "Arrive in Melbourne, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Melbourne City Tour", desc: "Explore Melbourne's famous landmarks, vibrant streets and waterfront attractions." },
+      { day: "Day 3", title: "Great Ocean Road", desc: "Enjoy a scenic drive along the spectacular Great Ocean Road and Twelve Apostles." },
+      { day: "Day 4", title: "Melbourne → Cairns", desc: "Fly to Cairns and relax amid the beautiful tropical surroundings." },
+      { day: "Day 5", title: "Great Barrier Reef", desc: "Experience the magnificent Great Barrier Reef with a memorable cruise." },
+      { day: "Day 6", title: "Cairns Experience", desc: "Explore Cairns and enjoy its tropical rainforest and scenic attractions." },
+      { day: "Day 7", title: "Cairns → Sydney", desc: "Fly to Sydney and enjoy the city's lively waterfront atmosphere." },
+      { day: "Day 8", title: "Sydney City Tour", desc: "Visit the Sydney Opera House, Harbour Bridge and other iconic attractions." },
+      { day: "Day 9", title: "Blue Mountains", desc: "Discover the breathtaking Blue Mountains and spectacular natural scenery." },
+      { day: "Day 10", title: "Sydney → Auckland", desc: "Fly to Auckland, New Zealand and enjoy the evening at leisure." },
+      { day: "Day 11", title: "Auckland City Tour", desc: "Explore Auckland's waterfront, landmarks and beautiful viewpoints." },
+      { day: "Day 12", title: "Auckland → Rotorua", desc: "Travel to Rotorua and experience geothermal wonders and Māori culture." },
+      { day: "Day 13", title: "Rotorua → Queenstown", desc: "Travel to Queenstown and enjoy spectacular mountain and lake scenery." },
+      { day: "Day 14", title: "Queenstown Adventure", desc: "Explore Queenstown and enjoy optional adventure activities." },
+      { day: "Day 15", title: "Milford Sound Cruise", desc: "Experience breathtaking Milford Sound with a scenic cruise." },
+      { day: "Day 16", title: "Queenstown → Christchurch", desc: "Journey to Christchurch through stunning South Island scenery." },
+      { day: "Day 17", title: "Christchurch Exploration", desc: "Explore Christchurch's gardens, landmarks and charming attractions." },
+      { day: "Day 18", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 18, country: "Australia + New Zealand", flag: "🇦🇺🇳🇿",
+    name: "Australian Extravaganza With Scenic New Zealand – Summer 2026",
+    duration: "19 Nights / 20 Days", price: 8171,
+    img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Melbourne", desc: "Arrive in Melbourne, hotel check-in and relax for the evening." },
+      { day: "Day 2", title: "Melbourne City Tour", desc: "Explore Melbourne's famous landmarks, vibrant streets and waterfront." },
+      { day: "Day 3", title: "Great Ocean Road", desc: "Enjoy the spectacular Great Ocean Road and iconic Twelve Apostles." },
+      { day: "Day 4", title: "Melbourne → Cairns", desc: "Fly to Cairns and enjoy its beautiful tropical surroundings." },
+      { day: "Day 5", title: "Great Barrier Reef", desc: "Experience the world-famous Great Barrier Reef on a scenic cruise." },
+      { day: "Day 6", title: "Cairns & Kuranda", desc: "Discover tropical rainforests and the charming village of Kuranda." },
+      { day: "Day 7", title: "Cairns → Gold Coast", desc: "Travel to Gold Coast and enjoy its beaches and lively atmosphere." },
+      { day: "Day 8", title: "Gold Coast Experience", desc: "Enjoy the Gold Coast's famous attractions, beaches and entertainment." },
+      { day: "Day 9", title: "Gold Coast → Sydney", desc: "Travel to Sydney and spend the evening exploring at leisure." },
+      { day: "Day 10", title: "Sydney City Tour", desc: "Visit the Opera House, Harbour Bridge and other iconic Sydney attractions." },
+      { day: "Day 11", title: "Blue Mountains", desc: "Experience the breathtaking Blue Mountains and spectacular natural scenery." },
+      { day: "Day 12", title: "Sydney → Auckland", desc: "Fly to Auckland, New Zealand and enjoy the evening at leisure." },
+      { day: "Day 13", title: "Auckland City Tour", desc: "Explore Auckland's waterfront, city landmarks and scenic viewpoints." },
+      { day: "Day 14", title: "Auckland → Rotorua", desc: "Travel to Rotorua and experience geothermal wonders and Māori culture." },
+      { day: "Day 15", title: "Rotorua Experience", desc: "Discover Rotorua's geysers, hot springs and beautiful natural surroundings." },
+      { day: "Day 16", title: "Rotorua → Queenstown", desc: "Travel to Queenstown and enjoy spectacular mountain scenery." },
+      { day: "Day 17", title: "Queenstown Sightseeing", desc: "Explore Queenstown's scenic attractions and optional adventure activities." },
+      { day: "Day 18", title: "Milford Sound & Christchurch", desc: "Experience Milford Sound cruise then journey to Christchurch." },
+      { day: "Day 19", title: "Christchurch City Tour", desc: "Explore Christchurch's gardens, landmarks and charming city attractions." },
+      { day: "Day 20", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 19, country: "New Zealand", flag: "🇳🇿",
+    name: "Magnificent New Zealand – Durga Puja & Navratri Special",
+    duration: "10 Nights / 11 Days", price: 6919,
+    img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Auckland", desc: "Arrive in Auckland, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Auckland City Tour", desc: "Explore Auckland's waterfront, famous landmarks and scenic viewpoints." },
+      { day: "Day 3", title: "Auckland → Rotorua", desc: "Travel to Rotorua and experience its fascinating geothermal landscapes." },
+      { day: "Day 4", title: "Rotorua Experience", desc: "Discover geysers, hot springs and traditional Māori culture." },
+      { day: "Day 5", title: "Rotorua → Queenstown", desc: "Travel to Queenstown and enjoy its spectacular mountains and lakes." },
+      { day: "Day 6", title: "Queenstown Sightseeing", desc: "Explore Queenstown's scenic attractions and enjoy optional adventure activities." },
+      { day: "Day 7", title: "Milford Sound Cruise", desc: "Experience breathtaking Milford Sound on a spectacular scenic cruise." },
+      { day: "Day 8", title: "Queenstown → Christchurch", desc: "Journey to Christchurch while enjoying beautiful South Island landscapes." },
+      { day: "Day 9", title: "Christchurch City Tour", desc: "Explore Christchurch's gardens, landmarks and charming city attractions." },
+      { day: "Day 10", title: "Scenic New Zealand Experience", desc: "Enjoy a memorable day surrounded by New Zealand's breathtaking natural scenery." },
+      { day: "Day 11", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+  {
+    id: 20, country: "New Zealand", flag: "🇳🇿",
+    name: "Magnificent New Zealand",
+    duration: "10 Nights / 11 Days", price: 3154,
+    img: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&auto=format&fit=crop&q=80",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Auckland", desc: "Arrive in Auckland, hotel check-in and enjoy the evening at leisure." },
+      { day: "Day 2", title: "Auckland City Tour", desc: "Explore Auckland's waterfront, famous landmarks and scenic viewpoints." },
+      { day: "Day 3", title: "Auckland → Rotorua", desc: "Travel to Rotorua and experience its fascinating geothermal landscapes." },
+      { day: "Day 4", title: "Rotorua Experience", desc: "Discover geysers, hot springs and traditional Māori cultural attractions." },
+      { day: "Day 5", title: "Rotorua → Queenstown", desc: "Travel to Queenstown and enjoy its spectacular mountains and lakes." },
+      { day: "Day 6", title: "Queenstown Sightseeing", desc: "Explore Queenstown's scenic attractions and enjoy optional adventure activities." },
+      { day: "Day 7", title: "Milford Sound Cruise", desc: "Experience breathtaking Milford Sound with a spectacular scenic cruise." },
+      { day: "Day 8", title: "Queenstown Leisure Day", desc: "Enjoy Queenstown's charm, optional activities and stunning surroundings." },
+      { day: "Day 9", title: "Queenstown → Christchurch", desc: "Journey to Christchurch through beautiful South Island scenery." },
+      { day: "Day 10", title: "Christchurch City Tour", desc: "Explore Christchurch's gardens, landmarks and charming attractions." },
+      { day: "Day 11", title: "Departure", desc: "Check out and transfer to the airport for your return journey." },
+    ],
+  },
+];
+
 function useCountdown(targetDate: Date) {
   const [timeLeft, setTimeLeft] = useState<number>(
     () => targetDate.getTime() - new Date().getTime(),
@@ -324,8 +509,10 @@ function StarRating({ count }: { count: number }) {
 function Snowflakes() {
   return (
     <div className="snowflakes" aria-hidden="true">
-      {["❄", "❅", "❆", "❄", "❅", "❆", "❄", "❅", "❆", "❄", "❅", "❆"].map((flake, i) => (
-        <div key={i} className={`snowflake snowflake-${i + 1}`}>{flake}</div>
+      {[...Array(12)].map((_, i) => (
+        <div key={i} className={`snowflake snowflake-${i + 1}`}>
+          <Snowflake size={i % 3 === 0 ? 14 : i % 3 === 1 ? 20 : 12} />
+        </div>
       ))}
     </div>
   );
@@ -334,11 +521,12 @@ function Snowflakes() {
 export default function NewYearTravelLanding() {
   const target = new Date("2026-12-31T23:59:59");
   const { days, hours, minutes, seconds } = useCountdown(target);
-  const [activeTab, setActiveTab] = useState<"all" | "christmas" | "newyear">("all");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showBookingForm, setShowBookingForm] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [expandedPkg, setExpandedPkg] = useState<number | null>(null);
 
-  const filteredDests = DESTINATIONS;
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -371,7 +559,7 @@ export default function NewYearTravelLanding() {
   };
 
   return (
-    <div className="page">
+    <div className={`page${isDark ? '' : ' light-theme'}`}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
@@ -548,13 +736,175 @@ export default function NewYearTravelLanding() {
           transform: translateY(-1px);
           box-shadow: 0 6px 20px rgba(212,168,67,0.35);
         }
+        .theme-toggle {
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.15);
+          color: var(--text);
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 17px;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+          flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+          background: rgba(255,255,255,0.16);
+          transform: rotate(20deg) scale(1.1);
+          box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        }
+
+        /* ─── LIGHT THEME ─── */
+        .light-theme {
+          --bg: #F5F0E8;
+          --surface: #EDE8DC;
+          --surface2: #E3DDD0;
+          --text: #1A1610;
+          --text-dim: rgba(26,22,16,0.65);
+          --text-muted: rgba(26,22,16,0.45);
+          --border: rgba(212,168,67,0.3);
+          --border-dim: rgba(0,0,0,0.1);
+        }
+
+        /* Nav */
+        .light-theme .nav {
+          background: rgba(245,240,232,0.95);
+          border-bottom: 1px solid rgba(212,168,67,0.25);
+        }
+        .light-theme .nav-links a  { color: rgba(26,22,16,0.7); }
+        .light-theme .nav-phone    { color: rgba(26,22,16,0.65); }
+        .light-theme .brand-name   { color: #1A1610; }
+        .light-theme .brand-sub    { color: rgba(26,22,16,0.45); }
+        .light-theme .theme-toggle {
+          background: rgba(0,0,0,0.06);
+          border-color: rgba(0,0,0,0.15);
+          color: #1A1610;
+        }
+
+        /* Page & sections */
+        .light-theme .page          { background: var(--bg); }
+        .light-theme .section-dark  { background: #EDE8DC; }
+        .light-theme .section-eyebrow { color: var(--gold); }
+        .light-theme .section-head h2 { color: #1A1610; }
+        .light-theme .section-head p  { color: rgba(26,22,16,0.65); }
+
+        /* Pose / activity / food cards */
+        .light-theme .pose-card  { background: #fff; border-color: rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .light-theme .pose-label { color: #1A1610; }
+
+        /* Boarding pass cards */
+        .light-theme .pass   { background: #fff; border-color: rgba(0,0,0,0.1); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        .light-theme .pass-city  { color: #1A1610; }
+        .light-theme .pass-country { color: rgba(26,22,16,0.6); }
+        .light-theme .pass-blurb  { color: rgba(26,22,16,0.7); }
+        .light-theme .pass-footer { border-top-color: rgba(0,0,0,0.08); }
+        .light-theme .pass-from   { color: rgba(26,22,16,0.5); }
+        .light-theme .pass-price  { color: var(--gold); }
+        .light-theme .pass-code   { color: #1A1610; }
+        .light-theme .pass-gate   { color: rgba(26,22,16,0.5); }
+
+        /* Confidence / trust cards */
+        .light-theme .confidence-item { background: #ffffff; border-color: rgba(0,0,0,0.08); }
+        .light-theme .confidence-item h3 { color: #1A1610; }
+        .light-theme .confidence-item p  { color: rgba(26,22,16,0.72); }
+        .light-theme .confidence-icon    { color: var(--gold); }
+
+        /* Tier / pricing cards */
+        .light-theme .tier           { background: #fff; border-color: rgba(0,0,0,0.1); }
+        .light-theme .tier h3        { color: #1A1610; }
+        .light-theme .tier p         { color: rgba(26,22,16,0.7); }
+        .light-theme .tier-cls       { color: rgba(26,22,16,0.5); }
+        .light-theme .discount       { color: var(--gold); }
+
+        /* Testimonials */
+        .light-theme .testimonial     { background: #fff; border-color: rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .light-theme .testimonial-text { color: rgba(26,22,16,0.75); }
+        .light-theme .testimonial-name { color: #1A1610; }
+        .light-theme .testimonial-meta { color: rgba(26,22,16,0.5); }
+
+        /* Inclusions */
+        .light-theme .incl-item  { background: #fff; border-color: rgba(0,0,0,0.1); color: #1A1610; }
+        .light-theme .incl-icon  { background: rgba(212,168,67,0.12); color: var(--gold); }
+
+        /* Contact section */
+        .light-theme .contact-section  { background: #EDE8DC; }
+        .light-theme .contact-info h3  { color: #1A1610; }
+        .light-theme .contact-info p   { color: rgba(26,22,16,0.65); }
+        .light-theme .contact-form-card {
+          background: #fff;
+          border-color: rgba(0,0,0,0.1);
+        }
+        .light-theme .contact-form-card h4 { color: #1A1610; }
+        .light-theme .contact-form-card > p { color: rgba(26,22,16,0.65); }
+        .light-theme .form-group input,
+        .light-theme .form-group select,
+        .light-theme .form-group textarea {
+          background: #F5F0E8;
+          border-color: rgba(0,0,0,0.15);
+          color: #1A1610;
+        }
+        .light-theme .form-group label { color: rgba(26,22,16,0.7); }
+
+        /* Footer */
+        .light-theme .footer {
+          background: #DDD8CC;
+          border-top: 1px solid rgba(0,0,0,0.1);
+          color: rgba(26,22,16,0.65);
+        }
+        .light-theme .footer-brand-name { color: #1A1610; }
+        .light-theme .footer-brand-sub  { color: rgba(26,22,16,0.5); }
+        .light-theme .footer-tagline    { color: rgba(26,22,16,0.65); }
+        .light-theme .footer-col h4     { color: #1A1610; }
+        .light-theme .footer-col ul li a { color: rgba(26,22,16,0.55); }
+        .light-theme .footer-col ul li a:hover { color: var(--gold); }
+        .light-theme .footer-contact-text       { color: rgba(26,22,16,0.65); }
+        .light-theme .footer-contact-text strong { color: #1A1610; }
+        .light-theme .footer-contact-text a     { color: rgba(26,22,16,0.65); }
+        .light-theme .footer-contact-icon { background: #fff; border-color: rgba(0,0,0,0.1); }
+        .light-theme .social-link {
+          background: #fff;
+          border-color: rgba(0,0,0,0.12);
+          color: #1A1610;
+        }
+        .light-theme .footer-copy        { color: rgba(26,22,16,0.45); }
+        .light-theme .footer-legal a     { color: rgba(26,22,16,0.45); }
+        .light-theme .footer-divider     { border-top-color: rgba(0,0,0,0.1); }
+
+        /* Countdown board */
+        .light-theme .board {
+          background: rgba(245,240,232,0.95);
+          border-color: rgba(212,168,67,0.35);
+        }
+        .light-theme .flap-value {
+          background: #fff;
+          border-color: rgba(0,0,0,0.1);
+          color: var(--gold);
+        }
+        .light-theme .flap-label  { color: rgba(26,22,16,0.5); }
+        .light-theme .countdown-label { color: rgba(26,22,16,0.5); }
+
+        /* Hero stats — always white since hero has dark overlay */
+        .hero-stat-num { color: #ffffff !important; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+        .hero-stat-lbl { color: rgba(255,255,255,0.75) !important; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
+        /* Confidence cards in light theme */
+        .light-theme .confidence-item { background: #ffffff; border-color: rgba(0,0,0,0.08); }
+        .light-theme .confidence-item h3 { color: #1A1610; }
+        .light-theme .confidence-item p  { color: rgba(26,22,16,0.72); }
+        .light-theme .confidence-icon    { color: var(--gold); }
+
+        /* Snowflakes in light mode — make them darker */
+        .light-theme .snowflake { color: rgba(0,0,0,0.18); }
 
         /* ─── HERO ─── */
         .hero {
           position: relative;
-          min-height: min(92vh, 780px);
+          min-height: min(75vh, 620px);
           display: flex;
-          align-items: flex-end;
+          align-items: center;
           overflow: hidden;
         }
         .hero-bg {
@@ -565,24 +915,26 @@ export default function NewYearTravelLanding() {
           z-index: 0;
         }
         .hero-bg-left {
-          background-image: url('https://images.unsplash.com/photo-1512389098783-66b81f86e199?w=1400&auto=format&fit=crop&q=85');
+          background-image: url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1400&auto=format&fit=crop&q=85');
           background-size: cover;
           background-position: center;
+          filter: brightness(0.75);
         }
         .hero-bg-right {
           background-image: url('https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=1400&auto=format&fit=crop&q=85');
           background-size: cover;
           background-position: center;
+          filter: brightness(0.75);
         }
         .hero-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             180deg,
-            rgba(13,15,26,0.3) 0%,
-            rgba(13,15,26,0.2) 30%,
-            rgba(13,15,26,0.65) 65%,
-            rgba(13,15,26,0.97) 100%
+            rgba(8,10,20,0.45) 0%,
+            rgba(8,10,20,0.35) 30%,
+            rgba(8,10,20,0.55) 65%,
+            rgba(8,10,20,0.88) 100%
           );
           z-index: 1;
         }
@@ -598,7 +950,7 @@ export default function NewYearTravelLanding() {
           position: relative;
           z-index: 3;
           width: 100%;
-          padding: 48px 24px 52px;
+          padding: 32px 24px 36px;
           text-align: center;
         }
         .hero-badges {
@@ -631,13 +983,18 @@ export default function NewYearTravelLanding() {
         }
         .eyebrow {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 13px;
+          font-size: 15px;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #E74C3C;
+          color: #ffffff;
           margin-bottom: 16px;
-          opacity: 1;
-          font-weight: 600;
+          opacity: 0;
+          font-weight: 900;
+          animation: eyebrowReveal 0.9s ease forwards;
+        }
+        @keyframes eyebrowReveal {
+          0%   { opacity: 0; transform: translateY(-14px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         .hero h1 {
           font-family: 'Playfair Display', serif;
@@ -646,12 +1003,33 @@ export default function NewYearTravelLanding() {
           line-height: 1.04;
           margin-bottom: 10px;
           color: var(--cream);
+          animation: titlePulse 4s ease-in-out infinite;
+        }
+        @keyframes titlePulse {
+          0%, 100% { text-shadow: 0 0 0px transparent; }
+          50%       { text-shadow: 0 0 40px rgba(240,201,106,0.3), 0 0 80px rgba(240,201,106,0.15); }
         }
         .hero h1 em {
           font-style: italic;
           color: var(--gold-light);
+          animation: shimmerGold 2.5s ease-in-out infinite;
+          display: inline-block;
         }
-        .hero h1 .xmas { color: #F08080; }
+        @keyframes shimmerGold {
+          0%, 100% { color: var(--gold-light); text-shadow: 0 0 0px transparent; }
+          50%       { color: #ffe680; text-shadow: 0 0 20px rgba(255,230,128,0.8), 0 0 40px rgba(255,200,50,0.4); }
+        }
+        .hero h1 .xmas {
+          color: #F08080;
+          animation: shimmerRed 2.5s ease-in-out infinite;
+          animation-delay: 1.25s;
+          display: inline-block;
+        }
+        @keyframes shimmerRed {
+          0%, 100% { color: #F08080; text-shadow: 0 0 0px transparent; }
+          50%       { color: #ff6b6b; text-shadow: 0 0 20px rgba(255,107,107,0.8), 0 0 40px rgba(231,76,60,0.4); }
+        }
+        }
         .hero-sub {
           max-width: 560px;
           margin: 0 auto 30px;
@@ -694,7 +1072,7 @@ export default function NewYearTravelLanding() {
           font-size: 11px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: var(--text-muted);
+          color: #ffffff;
           margin-bottom: 12px;
         }
         .board {
@@ -834,12 +1212,71 @@ export default function NewYearTravelLanding() {
           color: var(--cream);
           line-height: 1.1;
         }
+        .section-h2-left {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(28px, 4vw, 46px);
+          font-weight: 700;
+          color: var(--cream);
+          margin-bottom: 8px;
+          line-height: 1.1;
+        }
+        .light-theme .section-h2-left { color: #1A1610; }
         .section-head p {
           color: var(--text-dim);
           font-size: 15px;
           max-width: 500px;
           margin: 0 auto;
           line-height: 1.6;
+        }
+
+        /* ─── POSE / ACTIVITY / FOOD GRID ─── */
+        .pose-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 768px) {
+          .pose-grid { grid-template-columns: 1fr; }
+        }
+        .pose-card {
+          display: flex;
+          flex-direction: column;
+          border-radius: var(--radius);
+          overflow: hidden;
+          background: var(--surface);
+          border: 1px solid var(--border-dim);
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pose-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+        .pose-img {
+          width: 100%;
+          height: 220px;
+          background-size: cover;
+          background-position: center;
+          transition: transform 0.4s;
+        }
+        .pose-card:hover .pose-img {
+          transform: scale(1.04);
+        }
+        .pose-label {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 16px 18px;
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--text);
+        }
+        .pose-bar {
+          display: inline-block;
+          width: 4px;
+          height: 22px;
+          border-radius: 4px;
+          background: var(--gold);
+          flex-shrink: 0;
         }
 
         /* ─── FILTER TABS ─── */
@@ -1136,18 +1573,36 @@ export default function NewYearTravelLanding() {
         .incl-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-          gap: 12px 32px;
+          gap: 14px;
         }
         .incl-item {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 14px;
           font-size: 14px;
-          padding: 14px 0;
-          border-bottom: 1px solid var(--border-dim);
-          color: var(--text-dim);
+          font-weight: 500;
+          padding: 16px 18px;
+          border-radius: var(--radius-sm);
+          background: var(--surface);
+          border: 1px solid var(--border-dim);
+          color: var(--text);
+          transition: border-color 0.2s, transform 0.2s;
         }
-        .incl-icon { font-size: 18px; flex-shrink: 0; }
+        .incl-item:hover {
+          border-color: var(--gold);
+          transform: translateY(-2px);
+        }
+        .incl-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          background: var(--gold-dim);
+          color: var(--gold-light);
+          flex-shrink: 0;
+        }
 
         /* ─── TESTIMONIALS ─── */
         .testimonial-grid {
@@ -1196,6 +1651,94 @@ export default function NewYearTravelLanding() {
         }
         .testimonial-name { font-size: 14px; font-weight: 600; color: var(--cream); }
         .testimonial-meta { font-size: 12px; color: var(--text-muted); }
+
+        /* ─── TOUR PACKAGES ─── */
+        .pkg-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 24px;
+        }
+        .pkg-card {
+          border-radius: var(--radius);
+          overflow: hidden;
+          background: var(--surface);
+          border: 1px solid var(--border-dim);
+          transition: transform 0.3s, box-shadow 0.3s;
+          display: flex;
+          flex-direction: column;
+        }
+        .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+        .pkg-img { position: relative; height: 200px; overflow: hidden; }
+        .pkg-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .pkg-card:hover .pkg-img img { transform: scale(1.05); }
+        .pkg-flag {
+          position: absolute; top: 12px; left: 12px;
+          font-size: 20px; background: rgba(0,0,0,0.45);
+          backdrop-filter: blur(6px); border-radius: 8px; padding: 3px 8px; line-height: 1.5;
+        }
+        .pkg-price-badge {
+          position: absolute; top: 12px; right: 12px;
+          background: linear-gradient(135deg, var(--gold), var(--gold-light));
+          color: #0D0F1A; font-size: 12px; font-weight: 800;
+          padding: 4px 10px; border-radius: 999px;
+          font-family: 'JetBrains Mono', monospace;
+        }
+        .pkg-body { padding: 18px 20px; display: flex; flex-direction: column; flex: 1; }
+        .pkg-country {
+          font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+          text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
+        }
+        .pkg-name {
+          font-family: 'Playfair Display', serif; font-size: 16px;
+          font-weight: 700; color: var(--cream); line-height: 1.3; margin-bottom: 10px;
+        }
+        .pkg-meta {
+          display: flex; align-items: center; gap: 6px;
+          font-size: 12px; color: var(--text-muted); margin-bottom: 14px;
+        }
+        .pkg-read-btn {
+          background: transparent; border: 1px solid var(--border);
+          color: var(--gold); padding: 8px 16px; border-radius: 999px;
+          font-size: 13px; font-weight: 600; cursor: pointer;
+          transition: background 0.2s, border-color 0.2s;
+          display: inline-flex; align-items: center; gap: 6px;
+          width: fit-content; margin-top: auto;
+        }
+        .pkg-read-btn:hover { background: var(--gold-dim); border-color: var(--gold-light); }
+        .pkg-itinerary {
+          margin-top: 14px; border-top: 1px solid var(--border-dim);
+          padding-top: 14px; display: flex; flex-direction: column; gap: 10px;
+          animation: fadeSlideDown 0.3s ease;
+        }
+        @keyframes fadeSlideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .pkg-day { display: flex; gap: 10px; align-items: flex-start; }
+        .pkg-day-badge {
+          font-family: 'JetBrains Mono', monospace; font-size: 10px;
+          font-weight: 700; color: var(--gold); background: var(--gold-dim);
+          border-radius: 6px; padding: 2px 7px; white-space: nowrap;
+          flex-shrink: 0; margin-top: 2px;
+        }
+        .pkg-day-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+        .pkg-day-desc  { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+        .pkg-book-btn {
+          margin-top: 14px; width: 100%;
+          background: linear-gradient(135deg, var(--gold), var(--gold-light));
+          color: #0D0F1A; border: none; padding: 11px;
+          border-radius: 999px; font-weight: 700; font-size: 14px; cursor: pointer;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .pkg-book-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,168,67,0.4); }
+
+        .light-theme .pkg-card       { background: #fff; border-color: rgba(0,0,0,0.09); }
+        .light-theme .pkg-name       { color: #1A1610; }
+        .light-theme .pkg-meta       { color: rgba(26,22,16,0.5); }
+        .light-theme .pkg-day-title  { color: #1A1610; }
+        .light-theme .pkg-day-desc   { color: rgba(26,22,16,0.65); }
+        .light-theme .pkg-itinerary  { border-top-color: rgba(0,0,0,0.08); }
+        .light-theme .pkg-day-badge  { background: rgba(212,168,67,0.15); }
 
         /* ─── FINAL CTA ─── */
         .final-cta {
@@ -1641,25 +2184,156 @@ export default function NewYearTravelLanding() {
         }
 
         /* ─── RESPONSIVE ─── */
+
+        /* Hamburger */
+        .hamburger {
+          display: none;
+          flex-direction: column;
+          gap: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+          z-index: 110;
+        }
+        .hamburger span {
+          display: block;
+          width: 22px;
+          height: 2px;
+          background: var(--text);
+          border-radius: 2px;
+          transition: transform 0.3s, opacity 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile nav drawer */
+        .mobile-menu {
+          display: none;
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(13,15,26,0.97);
+          z-index: 105;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          backdrop-filter: blur(20px);
+        }
+        .mobile-menu.open { display: flex; }
+        .light-theme .mobile-menu { background: rgba(245,240,232,0.97); }
+        .mobile-menu a {
+          color: var(--text);
+          text-decoration: none;
+          font-size: 24px;
+          font-weight: 700;
+          font-family: 'Playfair Display', serif;
+          padding: 12px 32px;
+          transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu-cta {
+          margin-top: 16px;
+        }
+
         @media (max-width: 900px) {
           .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
           .nav-links { display: none; }
+          .nav-phone { display: none; }
+          .hamburger { display: flex; }
           .hero-bg { grid-template-columns: 1fr; }
           .hero-bg-right { display: none; }
           .hero-divider { display: none; }
           .contact-grid { grid-template-columns: 1fr; gap: 36px; }
           .form-row { grid-template-columns: 1fr; }
+          .xmas-banner { flex-direction: column; text-align: center; gap: 16px; }
+          .pose-grid { grid-template-columns: repeat(2, 1fr); }
+          .confidence-grid { grid-template-columns: repeat(2, 1fr); }
+          .hero-stats { gap: 20px; }
+          .pass-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         }
+
         @media (max-width: 600px) {
+          /* Nav */
+          .nav { padding: 12px 16px; }
+          .brand-name { font-size: 15px; }
+          .brand-sub { display: none; }
+          .nav-right { gap: 8px; }
+          .nav-cta { padding: 8px 14px; font-size: 12px; }
+
+          /* Hero */
+          .hero { min-height: auto; padding-top: 20px; }
+          .hero-inner { padding: 24px 16px 28px; }
+          .hero h1 { font-size: clamp(28px, 8vw, 38px); }
+          .eyebrow { font-size: 10px; letter-spacing: 0.14em; }
+          .hero-stats { gap: 16px; flex-wrap: wrap; justify-content: center; }
+          .hero-stat-num { font-size: 22px; }
+          .hero-ctas { flex-direction: column; align-items: center; gap: 10px; }
+          .btn-primary, .btn-gold, .btn-ghost { width: 100%; max-width: 300px; justify-content: center; }
+
+          /* Countdown */
+          .board { padding: 12px 10px; gap: 6px; flex-wrap: wrap; }
+          .flap { min-width: 46px; }
+          .flap-value { font-size: 22px; }
+          .board-sep { font-size: 20px; }
+
+          /* Sections */
+          .section { padding: 48px 16px; }
+          .section-head { margin-bottom: 28px; }
+          .section-head h2 { font-size: clamp(22px, 6vw, 32px); }
+          .wrap { padding: 0 16px; }
+
+          /* Destinations */
+          .pass-grid { grid-template-columns: 1fr; }
+          .pass-photo { height: 200px; }
+          .xmas-banner { padding: 20px 16px; }
+          .filter-tabs { gap: 8px; flex-wrap: wrap; }
+          .tab-btn { padding: 8px 14px; font-size: 13px; }
+
+          /* Pose / activity grid */
+          .pose-grid { grid-template-columns: 1fr; }
+          .pose-img { height: 180px; }
+
+          /* Confidence grid */
+          .confidence-grid { grid-template-columns: 1fr; }
+
+          /* Tier grid */
+          .tier-grid { grid-template-columns: 1fr; max-width: 100%; }
+
+          /* Inclusions */
+          .incl-grid { grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+          .incl-item { font-size: 13px; }
+
+          /* Testimonials */
+          .testimonial-grid { grid-template-columns: 1fr; }
+
+          /* Contact */
+          .contact-section { padding: 48px 16px; }
+          .contact-form-card { padding: 24px 16px; }
+          .contact-method-icon { width: 36px; height: 36px; font-size: 15px; }
+
+          /* Footer */
           .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-          .board { padding: 12px 10px; gap: 6px; }
-          .flap { min-width: 50px; }
-          .pass-photo { height: 170px; }
-          .hero h1 { font-size: 34px; }
-          .footer-bottom { flex-direction: column; text-align: center; }
-          .modal-body { padding: 24px; }
-          .modal-header { padding: 20px 24px 16px; }
-          .contact-form-card { padding: 28px 24px; }
+          .footer { padding: 40px 16px 24px; }
+          .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+          .footer-festive { gap: 16px; }
+
+          /* Modal */
+          .modal-content { margin: 12px; max-height: calc(100vh - 24px); }
+          .modal-body { padding: 20px 16px; }
+          .modal-header { padding: 18px 16px 14px; }
+
+          /* Final CTA */
+          .final-cta-inner { padding: 40px 16px; }
+          .final-cta h2 { font-size: clamp(22px, 6vw, 34px); }
+          .final-cta-btns { flex-direction: column; align-items: center; gap: 10px; }
+        }
+
+        @media (max-width: 380px) {
+          .incl-grid { grid-template-columns: 1fr; }
+          .hero h1 { font-size: 26px; }
+          .brand-logo { width: 36px; height: 36px; }
         }
       `}</style>
 
@@ -1668,7 +2342,9 @@ export default function NewYearTravelLanding() {
 
       {/* ANNOUNCEMENT RIBBON */}
       <div className="ribbon">
-        🎄 Christmas & New Year Special <span>— Limited seats available · Early bird discount ends soon</span> 🎉
+        <TreePine size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+        Christmas &amp; New Year Special <span>— Limited seats available · Early bird discount ends soon</span>
+        <Sparkles size={14} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: 6 }} />
       </div>
 
       {/* NAV */}
@@ -1694,10 +2370,27 @@ export default function NewYearTravelLanding() {
           <li><a href="#contact">Contact</a></li>
         </ul>
         <div className="nav-right">
-          <span className="nav-phone">📞 +91 98765 43210</span>
+          <span className="nav-phone"><Phone size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> +91 98765 43210</span>
+          <button className="theme-toggle" onClick={() => setIsDark(p => !p)} title={isDark ? 'Switch to Light' : 'Switch to Dark'}>
+            {isDark ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
           <button className="nav-cta" onClick={() => setShowBookingForm(true)}>Book Now</button>
+          <button className={`hamburger${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(p => !p)} aria-label="Menu">
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
+
+      {/* MOBILE MENU */}
+      <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+        <a href="#destinations" onClick={() => setMenuOpen(false)}>Destinations</a>
+        <a href="#inclusions" onClick={() => setMenuOpen(false)}>Inclusions</a>
+        <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+        <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+        <div className="mobile-menu-cta">
+          <button className="btn-gold" onClick={() => { setMenuOpen(false); setShowBookingForm(true); }}>Book Now</button>
+        </div>
+      </div>
 
       {/* HERO */}
       <header className="hero">
@@ -1709,19 +2402,13 @@ export default function NewYearTravelLanding() {
         <div className="hero-divider" />
 
         <div className="hero-inner">
-          <div className="hero-badges">
 
-          </div>
-          <div className="eyebrow">Dec 24 – Jan 1 · Dream Destinations Worldwide</div>
+
           <h1>
             Celebrate <em>Christmas</em>
             <br />& <span className="xmas">New Year</span> in Style
           </h1>
-          <p className="hero-sub">
-            Curated luxury festive holidays to 15 dream destinations worldwide — Christmas market walks,
-            gala dinners under the stars, rooftop countdowns with champagne, spectacular fireworks,
-            and memories that sparkle forever. Book early for up to 40% off and secure your perfect celebration.
-          </p>
+          <div className="eyebrow"><span style={{ color: '#F08080' }}>Dec 24 – Jan 1 · Dream</span> Destinations Worldwide</div>
 
           <div className="hero-stats">
             <div className="hero-stat">
@@ -1743,7 +2430,7 @@ export default function NewYearTravelLanding() {
           </div>
 
           <div className="countdown-wrap">
-            <div className="countdown-label">🎉 Countdown to New Year 2027</div>
+            <div className="countdown-label"><CalendarDays size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} /> Countdown to New Year 2027</div>
             <div className="board">
               <Flap value={days} label="Days" />
               <span className="board-sep">:</span>
@@ -1756,82 +2443,61 @@ export default function NewYearTravelLanding() {
           </div>
 
           <div className="hero-ctas">
-            <button className="btn-primary" onClick={() => setShowBookingForm(true)}>🎄 Book Christmas Package</button>
-            <button className="btn-gold" onClick={() => setShowBookingForm(true)}>🥂 New Year Deals</button>
+            <button className="btn-primary" onClick={() => setShowBookingForm(true)}><TreePine size={16} /> Book Christmas Package</button>
+            <button className="btn-gold" onClick={() => setShowBookingForm(true)}><Wine size={16} /> New Year Deals</button>
             <button className="btn-ghost" onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}>Explore All Destinations</button>
           </div>
         </div>
       </header>
 
       {/* DESTINATIONS */}
+      {/* DESTINATIONS / TOUR PACKAGES */}
       <section className="section" id="destinations">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-eyebrow">✈️ Boarding Passes</span>
-            <h2>Fifteen Gates to Midnight Magic</h2>
-            <p>
-              Handpicked dream destinations where Christmas wonder meets New Year's Eve fireworks.
-              Every journey includes international flights, luxury hotel stays, festive gala dinners,
-              VIP countdown parties, and unforgettable experiences crafted just for you.
-            </p>
+            <span className="section-eyebrow"><Globe size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Tour Packages</span>
+            <h2>Explore Our Holiday Packages</h2>
+            <p>Handpicked worldwide tours with detailed day-by-day itineraries. Click "Read More" to see the full journey.</p>
           </div>
-
-          {/* Christmas Special Banner */}
-          <div className="xmas-banner">
-            <div style={{ fontSize: "48px" }}>🎄</div>
-            <div className="xmas-banner-text">
-              <h3>Christmas + New Year Combo — Save Extra 10%</h3>
-              <p>
-                Book a combined Christmas Eve + New Year's Eve package and get an additional 10% off your total.
-                Limited seats — don't miss out on the most magical nights of the year.
-              </p>
-            </div>
-            <button className="btn-primary" style={{ flexShrink: 0 }} onClick={() => setShowBookingForm(true)}>Claim Combo Deal</button>
-          </div>
-
-          <div className="filter-tabs">
-            <button
-              className={`tab-btn ${activeTab === "all" ? "active" : ""}`}
-              onClick={() => setActiveTab("all")}
-            >All Destinations</button>
-            <button
-              className={`tab-btn ${activeTab === "christmas" ? "active" : ""}`}
-              onClick={() => setActiveTab("christmas")}
-            >🎄 Christmas</button>
-            <button
-              className={`tab-btn ${activeTab === "newyear" ? "active" : ""}`}
-              onClick={() => setActiveTab("newyear")}
-            >🥂 New Year</button>
-          </div>
-
-          <div className="pass-grid">
-            {filteredDests.map((d) => (
-              <div className="pass" key={d.code}>
-                <div className="pass-photo">
-                  <img src={d.img} alt={`${d.city}, ${d.country}`} loading="lazy" />
-                  <div className="pass-photo-overlay" />
-                  <span className="pass-tag">GATE {d.gate}</span>
-                  <span className="pass-price-tag">{d.price}</span>
-                  <span className="pass-nights">🌙 {d.nights}</span>
-                </div>
-                <div className="pass-body">
-                  <div className="pass-header">
-                    <span className="pass-code">{d.code}</span>
-                    <span className="pass-gate">SEAT {d.seat}</span>
+          <div className="pkg-grid">
+            {PACKAGES.map((pkg) => {
+              const isOpen = expandedPkg === pkg.id;
+              return (
+                <div className="pkg-card" key={pkg.id}>
+                  <div className="pkg-img">
+                    <img src={pkg.img} alt={pkg.name} loading="lazy" />
+                    <span className="pkg-flag">{pkg.flag}</span>
+                    <span className="pkg-price-badge">USD {pkg.price}</span>
                   </div>
-                  <div className="pass-city">{d.city}</div>
-                  <div className="pass-country">{d.country}</div>
-                  <p className="pass-blurb">{d.blurb}</p>
-                  <div className="pass-footer">
-                    <div>
-                      <div className="pass-from">Starting from</div>
-                      <div className="pass-price">{d.price}</div>
+                  <div className="pkg-body">
+                    <div className="pkg-country">{pkg.country}</div>
+                    <div className="pkg-name">{pkg.name}</div>
+                    <div className="pkg-meta">
+                      <CalendarDays size={13} />{pkg.duration}
                     </div>
-                    <button className="pass-book-btn" onClick={() => setShowBookingForm(true)}>Book Now →</button>
+                    <button className="pkg-read-btn" onClick={() => setExpandedPkg(isOpen ? null : pkg.id)}>
+                      <Sparkles size={13} />{isOpen ? "Show Less" : "Read More"}
+                    </button>
+                    {isOpen && (
+                      <div className="pkg-itinerary">
+                        {pkg.itinerary.map((item) => (
+                          <div className="pkg-day" key={item.day}>
+                            <span className="pkg-day-badge">{item.day}</span>
+                            <div>
+                              <div className="pkg-day-title">{item.title}</div>
+                              <div className="pkg-day-desc">{item.desc}</div>
+                            </div>
+                          </div>
+                        ))}
+                        <button className="pkg-book-btn" onClick={() => setShowBookingForm(true)}>
+                          Book This Package
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1840,7 +2506,7 @@ export default function NewYearTravelLanding() {
       <section className="section section-dark">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-eyebrow">✦ Why Choose Us</span>
+            <span className="section-eyebrow"><HeartHandshake size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Why Choose Us</span>
             <h2>Travel with Confidence</h2>
             <p>We handle every detail so you can focus on making memories this festive season.</p>
           </div>
@@ -1860,7 +2526,7 @@ export default function NewYearTravelLanding() {
       <section className="section" id="pricing">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-eyebrow">💰 Early Bird Offers</span>
+            <span className="section-eyebrow"><BadgePercent size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Early Bird Offers</span>
             <h2>Book Early, Save More</h2>
             <p>The sooner you book, the bigger your savings. Lock in your festive holiday today.</p>
           </div>
@@ -1885,14 +2551,14 @@ export default function NewYearTravelLanding() {
       <section className="section section-dark" id="inclusions">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-eyebrow">🎁 Package Inclusions</span>
+            <span className="section-eyebrow"><Gift size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Package Inclusions</span>
             <h2>Everything's Taken Care Of</h2>
             <p>From the moment you leave home to the moment you return — we've got it all covered.</p>
           </div>
           <div className="incl-grid">
             {INCLUSIONS.map((item) => (
               <div className="incl-item" key={item.text}>
-                <span className="incl-icon">{item.icon}</span>
+                <div className="incl-icon">{item.icon}</div>
                 <span>{item.text}</span>
               </div>
             ))}
@@ -1904,7 +2570,7 @@ export default function NewYearTravelLanding() {
       <section className="section">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-eyebrow">⭐ Happy Travellers</span>
+            <span className="section-eyebrow"><Star size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Happy Travellers</span>
             <h2>Real Stories, Real Magic</h2>
             <p>Thousands of travellers have celebrated their best Christmas and New Year with us.</p>
           </div>
@@ -1926,11 +2592,82 @@ export default function NewYearTravelLanding() {
         </div>
       </section>
 
+      {/* STRIKE A POSE */}
+      <section className="section" id="highlights">
+        <div className="wrap">
+          <div className="section-head" style={{ textAlign: 'left' }}>
+            <h2 className="section-h2-left">Strike a pose</h2>
+          </div>
+          <div className="pose-grid">
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />Insta-worthy locations</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />Must-see iconic towers</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />Stunning cultural spots</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ACTIVITIES */}
+      <section className="section section-dark" id="activities">
+        <div className="wrap">
+          <div className="section-head" style={{ textAlign: 'left' }}>
+            <span className="section-eyebrow">For the thrill-seekers</span>
+            <h2 className="section-h2-left">Activities to get you pumped</h2>
+          </div>
+          <div className="pose-grid">
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />Adrenaline-fueled activities</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />In, around and under water</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" />Must-try adventures</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* INDIAN FOODS */}
+      <section className="section" id="indian-food">
+        <div className="wrap">
+          <div className="section-head" style={{ textAlign: 'left' }}>
+            <span className="section-eyebrow">A feast for the senses</span>
+            <h2 className="section-h2-left">Taste of India on every journey</h2>
+          </div>
+          <div className="pose-grid">
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" style={{ background: '#E74C3C' }} />Butter Chicken & Naan</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" style={{ background: '#E74C3C' }} />Street chaat & snacks</div>
+            </div>
+            <div className="pose-card">
+              <div className="pose-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=800&auto=format&fit=crop&q=80')" }} />
+              <div className="pose-label"><span className="pose-bar" style={{ background: '#E74C3C' }} />Festive sweets & desserts</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT SECTION */}
       <section className="contact-section" id="contact">
         <div className="contact-grid">
           <div className="contact-info">
-            <h3>Let's Plan Your Perfect<br />Festive Getaway 🎄</h3>
+            <h3>Let's Plan Your Perfect<br />Festive Getaway <TreePine size={22} style={{ display: 'inline', verticalAlign: 'middle' }} /></h3>
             <p>
               Our travel experts are ready to help you create unforgettable Christmas
               and New Year memories. Reach out via phone, email, or fill out the form —
@@ -1939,9 +2676,9 @@ export default function NewYearTravelLanding() {
 
             <div className="contact-methods">
               <div className="contact-method">
-                <div className="contact-method-icon">📞</div>
+                <div className="contact-method-icon"><Phone size={18} /></div>
                 <div className="contact-method-text">
-                  <h4>Phone & WhatsApp</h4>
+                  <h4>Phone &amp; WhatsApp</h4>
                   <p>
                     <a href="tel:+919876543210">+91 98765 43210</a><br />
                     <a href="tel:+911800001234">1800-000-1234</a> (Toll Free)<br />
@@ -1951,7 +2688,7 @@ export default function NewYearTravelLanding() {
               </div>
 
               <div className="contact-method">
-                <div className="contact-method-icon">📧</div>
+                <div className="contact-method-icon"><AtSign size={18} /></div>
                 <div className="contact-method-text">
                   <h4>Email</h4>
                   <p>
@@ -1962,7 +2699,7 @@ export default function NewYearTravelLanding() {
               </div>
 
               <div className="contact-method">
-                <div className="contact-method-icon">📷</div>
+                <div className="contact-method-icon"><AtSign size={18} /></div>
                 <div className="contact-method-text">
                   <h4>Social Media</h4>
                   <p>
@@ -1973,7 +2710,7 @@ export default function NewYearTravelLanding() {
               </div>
 
               <div className="contact-method">
-                <div className="contact-method-icon">📍</div>
+                <div className="contact-method-icon"><MapPin size={18} /></div>
                 <div className="contact-method-text">
                   <h4>Visit Our Office</h4>
                   <p>
@@ -1986,7 +2723,7 @@ export default function NewYearTravelLanding() {
           </div>
 
           <div className="contact-form-card">
-            <h4>Get a Free Quote 🎁</h4>
+            <h4>Get a Free Quote <Gift size={18} style={{ display: 'inline', verticalAlign: 'middle' }} /></h4>
             <p>Share your travel details and we'll send you a personalized package within 24 hours.</p>
 
             <form onSubmit={handleFormSubmit}>
@@ -2066,7 +2803,7 @@ export default function NewYearTravelLanding() {
                   <option value="Kuala Lumpur">Kuala Lumpur, Malaysia</option>
                   <option value="Bali">Bali, Indonesia</option>
                   <option value="Istanbul">Istanbul, Turkey</option>
-                  <option value="Ahmedabad">Ahmedabad, India</option>
+                  <option value="Delhi">Delhi, India</option>
                   <option value="Switzerland">Switzerland</option>
                   <option value="London">London, UK</option>
                   <option value="New York">New York, USA</option>
@@ -2118,11 +2855,11 @@ export default function NewYearTravelLanding() {
                 className="form-submit"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Get Free Quote 🎉"}
+                {isSubmitting ? "Sending..." : <><CheckCircle size={15} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />Get Free Quote</>}
               </button>
 
               <p className="form-note">
-                🔒 Your information is safe with us. We respect your privacy and will never share your details.
+                <Lock size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Your information is safe with us. We respect your privacy and will never share your details.
               </p>
             </form>
           </div>
@@ -2134,14 +2871,14 @@ export default function NewYearTravelLanding() {
         <div className="final-cta-bg" />
         <div className="final-cta-overlay" />
         <div className="final-cta-inner">
-          <h2>Don't Miss the Most Magical<br />Night of the Year 🎉</h2>
+          <h2>Don't Miss the Most Magical<br />Night of the Year <Sparkles size={32} style={{ display: 'inline', verticalAlign: 'middle' }} /></h2>
           <p>
             Seats are filling fast for Christmas and New Year 2026/27 packages.
             Secure your spot today with just a small deposit and celebrate in style.
           </p>
           <div className="final-cta-btns">
-            <button className="btn-primary" onClick={() => setShowBookingForm(true)}>🎄 Book Christmas Trip</button>
-            <button className="btn-gold" onClick={() => setShowBookingForm(true)}>🥂 Reserve NYE Package</button>
+            <button className="btn-primary" onClick={() => setShowBookingForm(true)}><TreePine size={16} /> Book Christmas Trip</button>
+            <button className="btn-gold" onClick={() => setShowBookingForm(true)}><Wine size={16} /> Reserve NYE Package</button>
           </div>
         </div>
       </div>
@@ -2151,7 +2888,7 @@ export default function NewYearTravelLanding() {
         <div className="modal-overlay" onClick={() => setShowBookingForm(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3>Book Your Dream Holiday 🎄</h3>
+              <h3>Book Your Dream Holiday <TreePine size={20} style={{ display: 'inline', verticalAlign: 'middle' }} /></h3>
               <p>Fill in your details and we'll get back to you with the best package options.</p>
               <button
                 className="modal-close"
@@ -2299,11 +3036,11 @@ export default function NewYearTravelLanding() {
                   className="form-submit"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending Your Request..." : "Submit Booking Request 🎉"}
+                  {isSubmitting ? "Sending Your Request..." : <><CheckCircle size={15} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />Submit Booking Request</>}
                 </button>
 
                 <p className="form-note">
-                  🔒 Your information is safe with us. We'll respond within 24 hours.
+                  <Lock size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> Your information is safe with us. We'll respond within 24 hours.
                 </p>
               </form>
             </div>
@@ -2343,7 +3080,7 @@ export default function NewYearTravelLanding() {
                 className="social-link instagram"
                 aria-label="Instagram"
               >
-                📷
+                <AtSign size={18} />
               </a>
               <a
                 href="https://www.facebook.com/travelnexploreworld"
@@ -2352,7 +3089,7 @@ export default function NewYearTravelLanding() {
                 className="social-link"
                 aria-label="Facebook"
               >
-                📘
+                <Share2 size={18} />
               </a>
               <a
                 href="https://www.youtube.com/@travelnexploreworld"
@@ -2361,7 +3098,7 @@ export default function NewYearTravelLanding() {
                 className="social-link"
                 aria-label="YouTube"
               >
-                ▶️
+                <MonitorPlay size={18} />
               </a>
               <a
                 href="https://wa.me/919876543210"
@@ -2370,7 +3107,7 @@ export default function NewYearTravelLanding() {
                 className="social-link"
                 aria-label="WhatsApp"
               >
-                💬
+                <MessageCircle size={18} />
               </a>
             </div>
           </div>
@@ -2405,7 +3142,7 @@ export default function NewYearTravelLanding() {
           <div className="footer-col">
             <h4>Contact Us</h4>
             <div className="footer-contact-item">
-              <div className="footer-contact-icon">📞</div>
+              <div className="footer-contact-icon"><Phone size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Phone / WhatsApp</strong>
                 <a href="tel:+919876543210">+91 98765 43210</a>
@@ -2414,7 +3151,7 @@ export default function NewYearTravelLanding() {
               </div>
             </div>
             <div className="footer-contact-item">
-              <div className="footer-contact-icon">📧</div>
+              <div className="footer-contact-icon"><AtSign size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Email</strong>
                 <a href="mailto:info@travelnexploreworld.com">info@travelnexploreworld.com</a>
@@ -2423,7 +3160,7 @@ export default function NewYearTravelLanding() {
               </div>
             </div>
             <div className="footer-contact-item">
-              <div className="footer-contact-icon">📷</div>
+              <div className="footer-contact-icon"><AtSign size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Instagram</strong>
                 <a
@@ -2436,7 +3173,7 @@ export default function NewYearTravelLanding() {
               </div>
             </div>
             <div className="footer-contact-item">
-              <div className="footer-contact-icon">📍</div>
+              <div className="footer-contact-icon"><MapPin size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Office</strong>
                 42, Travel House, Connaught Place,<br />New Delhi – 110001
@@ -2452,7 +3189,7 @@ export default function NewYearTravelLanding() {
           <div className="footer-copy">
             © 2026 Travel N Explore World. All rights reserved. · Terms & conditions apply · Flights and visa assistance vary by route.
           </div>
-          <div className="footer-festive">🎄 🥂 ❄️ 🎉 ✨</div>
+
           <div className="footer-legal">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Use</a>
