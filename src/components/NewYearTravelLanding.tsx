@@ -1927,8 +1927,8 @@ export default function NewYearTravelLanding() {
           flex-shrink: 0;
           margin-top: 1px;
         }
-        .footer-contact-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
-        .footer-contact-text strong { color: var(--text); font-size: 12px; display: block; margin-bottom: 2px; }
+        .footer-contact-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; text-align: left; }
+        .footer-contact-text strong { color: var(--text); font-size: 12px; display: block; margin-bottom: 2px; text-align: left; }
         .footer-contact-text a { color: var(--text-dim); text-decoration: none; }
         .footer-contact-text a:hover { color: var(--gold); }
         .footer-divider {
