@@ -9,11 +9,6 @@ import {
   HeartHandshake
 } from "lucide-react";
 
-/**
- * AURORA CROSSINGS — Christmas & New Year 2026/2027 Travel Landing Page
- * Festive theme with Christmas + New Year hero, full footer, enhanced content.
- */
-
 
 const TIERS = [
   {
