@@ -1668,6 +1668,23 @@ export default function NewYearTravelLanding() {
           flex-direction: column;
         }
         .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+        .pkg-card.expanded {
+          grid-column: 1 / -1;
+          flex-direction: row;
+          align-items: flex-start;
+          transform: none;
+        }
+        .pkg-card.expanded .pkg-img {
+          width: 320px;
+          min-width: 320px;
+          height: auto;
+          min-height: 240px;
+        }
+        .pkg-card.expanded .pkg-img img { height: 100%; }
+        @media (max-width: 700px) {
+          .pkg-card.expanded { flex-direction: column; }
+          .pkg-card.expanded .pkg-img { width: 100%; min-width: unset; height: 200px; }
+        }
         .pkg-img { position: relative; height: 200px; overflow: hidden; }
         .pkg-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .pkg-card:hover .pkg-img img { transform: scale(1.05); }
@@ -2463,7 +2480,7 @@ export default function NewYearTravelLanding() {
             {PACKAGES.map((pkg) => {
               const isOpen = expandedPkg === pkg.id;
               return (
-                <div className="pkg-card" key={pkg.id}>
+                <div className={`pkg-card${isOpen ? ' expanded' : ''}`} key={pkg.id}>
                   <div className="pkg-img">
                     <img src={pkg.img} alt={pkg.name} loading="lazy" />
                     <span className="pkg-flag">{pkg.flag}</span>
