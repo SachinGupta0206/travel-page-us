@@ -1700,7 +1700,7 @@ export default function NewYearTravelLanding() {
           padding: 4px 10px; border-radius: 999px;
           font-family: 'JetBrains Mono', monospace;
         }
-        .pkg-body { padding: 18px 20px; display: flex; flex-direction: column; flex: 1; }
+        .pkg-body { padding: 18px 20px; display: flex; flex-direction: column; flex: 1; text-align: left; }
         .pkg-country {
           font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
           text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
@@ -1738,8 +1738,8 @@ export default function NewYearTravelLanding() {
           border-radius: 6px; padding: 2px 7px; white-space: nowrap;
           flex-shrink: 0; margin-top: 2px;
         }
-        .pkg-day-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-        .pkg-day-desc  { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+        .pkg-day-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; text-align: left; }
+        .pkg-day-desc  { font-size: 12px; color: var(--text-dim); line-height: 1.5; text-align: left; }
         .pkg-book-btn {
           margin-top: 14px; width: 100%;
           background: linear-gradient(135deg, var(--gold), var(--gold-light));
