@@ -9,11 +9,6 @@ import {
   HeartHandshake
 } from "lucide-react";
 
-/**
- * AURORA CROSSINGS — Christmas & New Year 2026/2027 Travel Landing Page
- * Festive theme with Christmas + New Year hero, full footer, enhanced content.
- */
-
 
 const TIERS = [
   {
@@ -78,46 +73,46 @@ const CONFIDENCE: { icon: React.ReactNode; title: string; text: string }[] = [
 
 const TESTIMONIALS = [
   {
-    name: "Priya Sharma",
-    city: "Mumbai",
-    text: "Aurora Crossings made our New Year in Dubai absolutely magical! From the moment we landed to the spectacular Burj Khalifa fireworks, every detail was perfect. The gala dinner was beyond expectations and our travel manager was always available. Best NYE ever!",
+    name: "James & Sarah Mitchell",
+    city: "London, UK",
+    text: "Absolutely phenomenal experience in Bali! The water sports, Ubud rice terraces, and Nusa Penida views were breathtaking. Travel N Explore World handled every detail perfectly — transfers, hotels, activities. We've already recommended them to all our friends!",
     rating: 5,
-    dest: "Dubai",
+    dest: "Bali",
   },
   {
-    name: "Rahul & Ananya",
-    city: "Bangalore",
-    text: "Our Christmas in Switzerland was straight out of a fairytale! The chalet was stunning, skiing was incredible, and celebrating New Year with fireworks over the Alps was unforgettable. Aurora Crossings organized everything seamlessly. Worth every penny!",
+    name: "Emily & Tom Harrington",
+    city: "Sydney, Australia",
+    text: "Switzerland in winter was a dream come true! Mt. Titlis snow, Lucerne's charm, and Interlaken's stunning Alps were beyond words. The team's 24/7 support made us feel completely safe. Best travel experience we've ever had — booking again next year!",
     rating: 5,
     dest: "Switzerland",
   },
   {
-    name: "Meera Nair",
-    city: "Delhi",
-    text: "The Maldives package for NYE was pure luxury and romance. Private overwater villa, candlelit beach dinner, snorkeling in crystal waters, and watching fireworks reflect on the lagoon at midnight. This was our dream honeymoon come true!",
+    name: "Carlos & Maria Fernandez",
+    city: "Madrid, Spain",
+    text: "Our New Zealand trip covering Auckland, Queenstown, and Milford Sound was absolutely spectacular! The itinerary was perfectly planned with zero hiccups. The Milford Sound cruise alone was worth every penny. A world-class travel agency!",
     rating: 5,
-    dest: "Maldives",
+    dest: "New Zealand",
   },
   {
-    name: "Vikram & Family",
-    city: "Pune",
-    text: "We took our parents for Christmas in Paris and it was the best gift ever! The Christmas markets, Eiffel Tower lights, Seine River cruise, and New Year champagne toast created memories for a lifetime. Our kids still talk about it every day!",
+    name: "Sophie & Mark Laurent",
+    city: "Paris, France",
+    text: "Vietnam Extravaganza was extraordinary — Hanoi's Old Quarter, Ha Long Bay cruise, and Ho Chi Minh City's energy were unforgettable. Every hotel was excellent and our guide was incredibly knowledgeable. Merci for this perfect holiday!",
     rating: 5,
-    dest: "Paris",
+    dest: "Vietnam",
   },
   {
-    name: "Sneha Reddy",
-    city: "Hyderabad",
-    text: "Bangkok was the perfect blend of culture, celebration, and value! From temple visits to rooftop parties, floating markets to spa experiences, and an electrifying countdown at Chao Phraya River. Aurora Crossings exceeded all expectations!",
+    name: "David & Lisa Thompson",
+    city: "Toronto, Canada",
+    text: "The Japan Cherry Blossom tour was a once-in-a-lifetime experience! Tokyo, Mt. Fuji, Kyoto temples, and Osaka's food scene — all perfectly timed with the blossoms. The bullet train rides were thrilling. Couldn't have asked for better planning!",
     rating: 5,
-    dest: "Bangkok",
+    dest: "Japan",
   },
   {
-    name: "Arjun Mehta",
-    city: "Ahmedabad",
-    text: "Being in Sydney to welcome 2027 FIRST was bucket-list worthy! The harbour bridge fireworks, Opera House views, Bondi Beach Christmas, and incredible food made this trip legendary. 24/7 support from the team was outstanding!",
+    name: "Anna & Peter Schneider",
+    city: "Berlin, Germany",
+    text: "Finland Northern Lights experience was pure magic! Seeing the Aurora Borealis over Lapland, husky rides, and Santa's Village with the kids was unforgettable. The team at Travel N Explore World made everything seamless. Wunderbar!",
     rating: 5,
-    dest: "Sydney",
+    dest: "Finland",
   },
 ];
 
@@ -1668,6 +1663,23 @@ export default function NewYearTravelLanding() {
           flex-direction: column;
         }
         .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+        .pkg-card.expanded {
+          grid-column: 1 / -1;
+          flex-direction: row;
+          align-items: flex-start;
+          transform: none;
+        }
+        .pkg-card.expanded .pkg-img {
+          width: 320px;
+          min-width: 320px;
+          height: auto;
+          min-height: 240px;
+        }
+        .pkg-card.expanded .pkg-img img { height: 100%; }
+        @media (max-width: 700px) {
+          .pkg-card.expanded { flex-direction: column; }
+          .pkg-card.expanded .pkg-img { width: 100%; min-width: unset; height: 200px; }
+        }
         .pkg-img { position: relative; height: 200px; overflow: hidden; }
         .pkg-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .pkg-card:hover .pkg-img img { transform: scale(1.05); }
@@ -1683,7 +1695,7 @@ export default function NewYearTravelLanding() {
           padding: 4px 10px; border-radius: 999px;
           font-family: 'JetBrains Mono', monospace;
         }
-        .pkg-body { padding: 18px 20px; display: flex; flex-direction: column; flex: 1; }
+        .pkg-body { padding: 18px 20px; display: flex; flex-direction: column; flex: 1; text-align: left; }
         .pkg-country {
           font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
           text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
@@ -1721,8 +1733,8 @@ export default function NewYearTravelLanding() {
           border-radius: 6px; padding: 2px 7px; white-space: nowrap;
           flex-shrink: 0; margin-top: 2px;
         }
-        .pkg-day-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-        .pkg-day-desc  { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+        .pkg-day-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; text-align: left; }
+        .pkg-day-desc  { font-size: 12px; color: var(--text-dim); line-height: 1.5; text-align: left; }
         .pkg-book-btn {
           margin-top: 14px; width: 100%;
           background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -1915,8 +1927,8 @@ export default function NewYearTravelLanding() {
           flex-shrink: 0;
           margin-top: 1px;
         }
-        .footer-contact-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
-        .footer-contact-text strong { color: var(--text); font-size: 12px; display: block; margin-bottom: 2px; }
+        .footer-contact-text { font-size: 13px; color: var(--text-dim); line-height: 1.5; text-align: left; }
+        .footer-contact-text strong { color: var(--text); font-size: 12px; display: block; margin-bottom: 2px; text-align: left; }
         .footer-contact-text a { color: var(--text-dim); text-decoration: none; }
         .footer-contact-text a:hover { color: var(--gold); }
         .footer-divider {
@@ -2463,7 +2475,7 @@ export default function NewYearTravelLanding() {
             {PACKAGES.map((pkg) => {
               const isOpen = expandedPkg === pkg.id;
               return (
-                <div className="pkg-card" key={pkg.id}>
+                <div className={`pkg-card${isOpen ? ' expanded' : ''}`} key={pkg.id}>
                   <div className="pkg-img">
                     <img src={pkg.img} alt={pkg.name} loading="lazy" />
                     <span className="pkg-flag">{pkg.flag}</span>
