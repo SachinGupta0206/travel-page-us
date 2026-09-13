@@ -1898,9 +1898,10 @@ export default function NewYearTravelLanding() {
           text-transform: uppercase;
           color: var(--text);
           margin-bottom: 18px;
+          text-align: left;
         }
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li { margin-bottom: 10px; text-align: left; }
         .footer-col ul li a {
           font-size: 14px;
           color: var(--text-muted);
@@ -2382,7 +2383,7 @@ export default function NewYearTravelLanding() {
           <li><a href="#contact">Contact</a></li>
         </ul>
         <div className="nav-right">
-          <span className="nav-phone"><Phone size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> +91 98765 43210</span>
+          <span className="nav-phone"><Phone size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 5 }} /> +1 92934 33673</span>
           <button className="theme-toggle" onClick={() => setIsDark(p => !p)} title={isDark ? 'Switch to Light' : 'Switch to Dark'}>
             {isDark ? <Sun size={17} /> : <Moon size={17} />}
           </button>
@@ -2692,8 +2693,8 @@ export default function NewYearTravelLanding() {
                 <div className="contact-method-text">
                   <h4>Phone &amp; WhatsApp</h4>
                   <p>
-                    <a href="tel:+919876543210">+91 98765 43210</a><br />
-                    <a href="tel:+911800001234">1800-000-1234</a> (Toll Free)<br />
+                    <a href="tel:+19293433673">+1 9293433673</a><br />
+
                     <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Mon-Sat: 9 AM - 9 PM IST</span>
                   </p>
                 </div>
@@ -2792,7 +2793,7 @@ export default function NewYearTravelLanding() {
                     type="tel"
                     name="phone"
                     className="form-input"
-                    placeholder="+91 98765 43210"
+                    placeholder="+1 92934 33673"
                     required
                   />
                 </div>
@@ -2966,7 +2967,7 @@ export default function NewYearTravelLanding() {
                       type="tel"
                       name="phone"
                       className="form-input"
-                      placeholder="+91 98765 43210"
+                      placeholder="+1 92934 33673"
                       required
                     />
                   </div>
@@ -3084,7 +3085,7 @@ export default function NewYearTravelLanding() {
               Crafting unforgettable Christmas and New Year travel experiences since 2015.
               From festive Alpine chalets to tropical NYE beach parties — we make holidays magical.
             </p>
-            <div className="footer-socials">
+            {/* <div className="footer-socials">
               <a
                 href="https://www.instagram.com/travelnexploreworld"
                 target="_blank"
@@ -3121,7 +3122,7 @@ export default function NewYearTravelLanding() {
               >
                 <MessageCircle size={18} />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
@@ -3157,38 +3158,8 @@ export default function NewYearTravelLanding() {
               <div className="footer-contact-icon"><Phone size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Phone / WhatsApp</strong>
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+19293433673">+1 9293433673</a>
                 <br />
-                <a href="tel:+911800001234">1800-000-1234 (Toll Free)</a>
-              </div>
-            </div>
-            <div className="footer-contact-item">
-              <div className="footer-contact-icon"><AtSign size={16} /></div>
-              <div className="footer-contact-text">
-                <strong>Email</strong>
-                <a href="mailto:info@travelnexploreworld.com">info@travelnexploreworld.com</a>
-                <br />
-                <a href="mailto:bookings@travelnexploreworld.com">bookings@travelnexploreworld.com</a>
-              </div>
-            </div>
-            <div className="footer-contact-item">
-              <div className="footer-contact-icon"><AtSign size={16} /></div>
-              <div className="footer-contact-text">
-                <strong>Instagram</strong>
-                <a
-                  href="https://www.instagram.com/travelnexploreworld"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @travelnexploreworld
-                </a>
-              </div>
-            </div>
-            <div className="footer-contact-item">
-              <div className="footer-contact-icon"><MapPin size={16} /></div>
-              <div className="footer-contact-text">
-                <strong>Office</strong>
-                42, Travel House, Connaught Place,<br />New Delhi – 110001
               </div>
             </div>
           </div>
