@@ -4,7 +4,7 @@ import {
   Plane, Hotel, Coffee, UtensilsCrossed, Car, Map, FileText, PartyPopper,
   Ticket, TreePine, Gift, Briefcase, Shield, Camera, Film, Ship, Wallet,
   Compass, Phone, RefreshCw, Sun, Moon, Star, Sparkles,
-  AtSign, Share2, MonitorPlay, MessageCircle, MapPin, Lock,
+  AtSign, MapPin, Lock,
   CheckCircle, Snowflake, Globe, Wine, CalendarDays, BadgePercent,
   HeartHandshake
 } from "lucide-react";
