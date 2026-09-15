@@ -2163,16 +2163,20 @@ export default function NewYearTravelLanding() {
           font-weight: 600;
           color: var(--text);
           margin-bottom: 4px;
+          text-align: left;
         }
         .contact-method-text p {
           font-size: 13.5px;
           color: var(--text-dim);
           line-height: 1.5;
+          text-align: left;
         }
         .contact-method-text a {
           color: var(--gold);
           text-decoration: none;
           transition: color 0.2s;
+          text-align: left;
+          display: block;
         }
         .contact-method-text a:hover {
           color: var(--gold-light);
@@ -2718,17 +2722,6 @@ export default function NewYearTravelLanding() {
                   <p>
                     Instagram: <a href="https://www.instagram.com/travelnexploreworld" target="_blank" rel="noopener noreferrer">@travelnexploreworld</a><br />
                     <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>DM us for quick questions!</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-method">
-                <div className="contact-method-icon"><MapPin size={18} /></div>
-                <div className="contact-method-text">
-                  <h4>Visit Our Office</h4>
-                  <p>
-                    42, Travel House, Connaught Place<br />
-                    New Delhi – 110001, India
                   </p>
                 </div>
               </div>
