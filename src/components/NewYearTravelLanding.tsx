@@ -1,10 +1,11 @@
 ﻿import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import type React from "react";
 import {
   Plane, Hotel, Coffee, UtensilsCrossed, Car, Map, FileText, PartyPopper,
   Ticket, TreePine, Gift, Briefcase, Shield, Camera, Film, Ship, Wallet,
   Compass, Phone, RefreshCw, Sun, Moon, Star, Sparkles,
-  AtSign, MapPin, Lock,
+  AtSign, Lock,
   CheckCircle, Snowflake, Globe, Wine, CalendarDays, BadgePercent,
   HeartHandshake
 } from "lucide-react";
@@ -3167,9 +3168,9 @@ export default function NewYearTravelLanding() {
           </div>
 
           <div className="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Refund Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Use</Link>
+            <Link to="/refund">Refund Policy</Link>
           </div>
         </div>
       </footer>
