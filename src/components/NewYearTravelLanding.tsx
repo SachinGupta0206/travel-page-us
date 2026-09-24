@@ -5,7 +5,7 @@ import {
   Plane, Hotel, Coffee, UtensilsCrossed, Car, Map, FileText, PartyPopper,
   Ticket, TreePine, Gift, Briefcase, Shield, Camera, Film, Ship, Wallet,
   Compass, Phone, RefreshCw, Sun, Moon, Star, Sparkles,
-  AtSign, Lock,
+  AtSign, Lock, MapPin,
   CheckCircle, Snowflake, Globe, Wine, CalendarDays, BadgePercent,
   HeartHandshake
 } from "lucide-react";
@@ -2726,6 +2726,19 @@ export default function NewYearTravelLanding() {
                   </p>
                 </div>
               </div>
+
+              <div className="contact-method">
+                <div className="contact-method-icon"><MapPin size={18} /></div>
+                <div className="contact-method-text">
+                  <h4>Office Address</h4>
+                  <p>
+                    Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
+                  </p>
+                  <p style={{ marginTop: '8px' }}>
+                    Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -3154,6 +3167,14 @@ export default function NewYearTravelLanding() {
                 <strong>Phone / WhatsApp</strong>
                 <a href="tel:+19293433673">+1 9293433673</a>
                 <br />
+              </div>
+            </div>
+            <div className="footer-contact-item">
+              <div className="footer-contact-icon"><MapPin size={16} /></div>
+              <div className="footer-contact-text">
+                <strong>Office Address</strong>
+                Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L<br />
+                Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
               </div>
             </div>
           </div>
