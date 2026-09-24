@@ -2732,10 +2732,8 @@ export default function NewYearTravelLanding() {
                 <div className="contact-method-text">
                   <h4>Office Address</h4>
                   <p>
-                    Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
-                  </p>
-                  <p style={{ marginTop: '8px' }}>
-                    Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
+                    Unit 9, Skyport Drive, Suite IN10092,<br />
+                    West Drayton, Middx UB7 0L
                   </p>
                 </div>
               </div>
@@ -3173,8 +3171,8 @@ export default function NewYearTravelLanding() {
               <div className="footer-contact-icon"><MapPin size={16} /></div>
               <div className="footer-contact-text">
                 <strong>Office Address</strong>
-                Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L<br />
-                Unit 9, Skyport Drive, Suite IN10092, West Drayton, Middx UB7 0L
+                Unit 9, Skyport Drive, Suite IN10092,<br />
+                West Drayton, Middx UB7 0L
               </div>
             </div>
           </div>
