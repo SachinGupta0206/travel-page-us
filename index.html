@@ -36,6 +36,38 @@
     <meta property="og:url" content="https://www.travelnexploreworld.com/" />
     <meta property="og:site_name" content="Travel N Explore World" />
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-18469280281"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "AW-18469280281");
+    </script>
+
+    <!-- Event snippet for Click to call conversion -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-18469280281/dHtiCLTW54MdEJm06-ZE",
+          value: 1.0,
+          currency: "INR",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
+
     <!-- Apple Touch Icon -->
     <link
       rel="apple-touch-icon"
