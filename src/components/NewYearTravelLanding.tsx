@@ -2735,6 +2735,10 @@ export default function NewYearTravelLanding() {
                     Unit 9, Skyport Drive, Suite IN10092,<br />
                     West Drayton, Middx UB7 0L
                   </p>
+                  <p style={{ marginTop: '10px' }}>
+                    4283 Express Lane, Suite IN10092,<br />
+                    Sarasota, FL 34249
+                  </p>
                 </div>
               </div>
             </div>
@@ -3172,7 +3176,10 @@ export default function NewYearTravelLanding() {
               <div className="footer-contact-text">
                 <strong>Office Address</strong>
                 Unit 9, Skyport Drive, Suite IN10092,<br />
-                West Drayton, Middx UB7 0L
+                West Drayton, Middx UB7 0L<br />
+                <br />
+                4283 Express Lane, Suite IN10092,<br />
+                Sarasota, FL 34249
               </div>
             </div>
           </div>
