@@ -1,6 +1,9 @@
 ﻿import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import type React from "react";
+
+// Google Ads gtag global
+declare function gtag(...args: unknown[]): void;
 import {
   Plane, Hotel, Coffee, UtensilsCrossed, Car, Map, FileText, PartyPopper,
   Ticket, TreePine, Gift, Briefcase, Shield, Camera, Film, Ship, Wallet,
@@ -541,6 +544,8 @@ export default function NewYearTravelLanding() {
       const data = await response.json();
 
       if (response.ok) {
+        // Fire Google Ads lead form conversion
+        gtag('event', 'conversion', { 'send_to': 'AW-18469280281/zPc_CI_Ei4odEJm06-ZE' });
         alert("🎉 Success! Your booking request has been received. Our team will contact you within 24 hours.");
         form.reset();
         setShowBookingForm(false);
